@@ -3,7 +3,8 @@ import React from 'react';
 const Profile = () => {
     return (
         <div>
-            PROFILE
+            <h1>LOGIN</h1>
+            <button>ВЫЙТИ</button>
         </div>
     );
 };
