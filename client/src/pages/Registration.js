@@ -21,10 +21,10 @@ const Registration = () => {
             data = await registration(email, login, password)
             user.setUser(data)
             user.setIsAuth(true)
-            navigate('/profile')
+            navigate('/user')
         } catch (e) {
-            alert(e.response.data.message())
-            console.log(e.response.data.message())
+            alert("JOPA")
+            alert(e.response.data.message)
         }
     }
 

@@ -14,7 +14,8 @@ const Home = () => {
     }
 
     const toCourses = () => {
-        navigate('/courses')
+        alert("ЖОПА")
+        //navigate('/courses')
     }
 
     return (

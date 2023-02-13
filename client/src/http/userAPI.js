@@ -1,4 +1,7 @@
 import jwt_decode from "jwt-decode"
+import Cookies from "universal-cookie"
+
+const cookies = new Cookies()
 
 export const registration = async (email, login, password) => {
     const response = await fetch('http://localhost:3001/ivvkor/user/registration',
@@ -11,10 +14,11 @@ export const registration = async (email, login, password) => {
         })
 
     let middleData = await response.json()
-    let data = jwt_decode(middleData.token)
     localStorage.setItem('token', middleData.token)
+    let data = jwt_decode(middleData.token)
+    cookies.set('token', data, {path: '/', maxAge: 60*60*24*30})
+    console.log(cookies.get('token'))
     console.log(data)
-
     return data
 }
 
@@ -29,8 +33,10 @@ export const login = async (email, password) => {
         })
 
     let middleData = await response.json()
-    let data = jwt_decode(middleData.token)
     localStorage.setItem('token', middleData.token)
+    let data = jwt_decode(middleData.token)
+    cookies.set('token', data, {path: '/', maxAge: 60*60*24*30})
+    //console.log(cookies.get('token'))
     console.log(data)
 
     return data
@@ -41,7 +47,8 @@ export const check = async () => {
         method: 'GET',
         headers: new Headers({
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${localStorage.getItem('token')}`
+            "Authorization": `Bearer ${cookies.get('token')}`
+            //"Authorization": `Bearer ${localStorage.getItem('token')}`
         })
     })
     console.log(jwt_decode(data.token))

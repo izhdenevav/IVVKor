@@ -18,7 +18,7 @@ const Login = () => {
         let data = await login(email, password)
         user.setUser(data)
         user.setIsAuth(true)
-        navigate('/profile')
+        navigate('/user')
     }
 
     return (
