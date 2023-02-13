@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {Context} from "../index";
 
 const Profile = () => {
+    const {user} = useContext(Context)
+
     return (
         <div>
             <h1>LOGIN</h1>
