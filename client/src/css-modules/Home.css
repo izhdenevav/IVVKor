@@ -1,0 +1,58 @@
+html {
+    height: 150%;
+    background:  linear-gradient(to bottom, white 30%, #B1B6D6);
+}
+
+body {
+    text-align: center;
+}
+
+@font-face {
+    font-family: "JejuMyeongjo";
+    src: local('JejuMyeongjo'), local('JejuMyeongjo'), url(JejuMyeongjo.ttf);
+}
+
+.loginButtons {
+    background: transparent;
+    border: transparent;
+    font-family: "JejuMyeongjo";
+    color: #313F94;
+    font-size: 15px;
+    margin-right: 20px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.homeToProfileDiv {
+    text-align: right;
+}
+
+.homeRussianWords {
+    font-family: "JejuMyeongjo";
+    font-size: 18px;
+}
+
+.homeKoreanWords {
+    font-size: 26px;
+    background: radial-gradient(20% 120%, #313F94, #AC5F75) ;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: "JejuMyeongjo";
+    animation: colorChange 5s infinite alternate linear;
+}
+
+@keyframes colorChange {
+    from {
+        background-position: top 0 left 33%;
+        background-size: 400% 200%;
+
+    }
+    50% {
+        background-position: top center;
+        background-size: 200% 200%;
+    }
+    to {
+        background-position: top 0 right 33%;
+        background-size: 400% 200%;
+    }
+}
