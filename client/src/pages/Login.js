@@ -2,7 +2,6 @@ import React, {useContext, useState} from 'react';
 import {NavLink, useNavigate} from "react-router-dom";
 import {login} from "../http/userAPI";
 import {Context} from "../index";
-import jwt_decode from "jwt-decode";
 
 const Login = () => {
     const {user} = useContext(Context)
@@ -16,10 +15,7 @@ const Login = () => {
     }
 
     const click = async () => {
-        let middleData
-        let data
-        middleData = await login(email, password)
-        data = jwt_decode(middleData.token)
+        let data = await login(email, password)
         user.setUser(data)
         user.setIsAuth(true)
         navigate('/profile')

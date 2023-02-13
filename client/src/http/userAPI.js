@@ -12,7 +12,7 @@ export const registration = async (email, login, password) => {
 
     let middleData = await response.json()
     let data = jwt_decode(middleData.token)
-    localStorage.setItem("token", data.token)
+    localStorage.setItem('token', middleData.token)
     console.log(data)
 
     return data
@@ -30,7 +30,7 @@ export const login = async (email, password) => {
 
     let middleData = await response.json()
     let data = jwt_decode(middleData.token)
-    localStorage.setItem("token", data.token)
+    localStorage.setItem('token', middleData.token)
     console.log(data)
 
     return data

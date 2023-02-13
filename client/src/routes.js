@@ -1,14 +1,14 @@
-import Profile from "./pages/Profile"
 import Home from "./pages/Home";
 import Courses from "./pages/Courses";
 import Registration from "./pages/Registration";
 import Login from "./pages/Login";
 import Course from "./pages/Course"
+import UserProfile from "./pages/UserProfile";
 
 export const authRoutes = [
     {
         path: '/profile',
-        Component: <Profile/>
+        Component: <UserProfile/>
     }
 ]
 
