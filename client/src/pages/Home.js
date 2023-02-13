@@ -5,15 +5,18 @@ import '../css-modules/Home.css';
 const Home = () => {
     const navigate = useNavigate()
 
-    const toRegistrationPage = () => {
+    const toRegistrationPage = (e) => {
+        e.preventDefault()
         navigate('/registration')
     }
 
-    const toLoginPage = () => {
+    const toLoginPage = (e) => {
+        e.preventDefault()
         navigate('/login')
     }
 
-    const toCourses = () => {
+    const toCourses = (e) => {
+        e.preventDefault()
         alert("ЖОПА")
         //navigate('/courses')
     }

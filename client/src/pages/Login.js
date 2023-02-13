@@ -3,7 +3,7 @@ import {NavLink, useNavigate} from "react-router-dom";
 import {login} from "../http/userAPI";
 import {Context} from "../index";
 
-const Login = () => {
+const Login =  () => {
     const {user} = useContext(Context)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -14,11 +14,12 @@ const Login = () => {
         navigate('/')
     }
 
-    const click = async () => {
+    const click = async (e) => {
+        e.preventDefault()
         let data = await login(email, password)
         user.setUser(data)
         user.setIsAuth(true)
-        navigate('/user')
+        navigate('/profile')
     }
 
     return (
@@ -34,8 +35,8 @@ const Login = () => {
                 <div>
                     Нет аккаунта? <NavLink to='/registration'>Зарегистрируйся!</NavLink>
                 </div>
-                <button onClick={click} type="button">Войти</button>
-                <button onClick={toHome}>На главную</button>
+                <button type="button" onClick={click} type="button">Войти</button>
+                <button type="submit"  onClick={toHome}>На главную</button>
             </form>
         </>
     );

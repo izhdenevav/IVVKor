@@ -51,6 +51,5 @@ export const check = async () => {
             //"Authorization": `Bearer ${localStorage.getItem('token')}`
         })
     })
-    console.log(jwt_decode(data.token))
     return jwt_decode(data.token)
 }

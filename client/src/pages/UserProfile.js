@@ -7,7 +7,8 @@ const UserProfile = () => {
 
     const navigate = useNavigate()
 
-    const signOut = async () => {
+    const signOut = async (e) => {
+        e.preventDefault()
         user.setUser({})
         user.setIsAuth(false)
         navigate('/')
@@ -18,7 +19,7 @@ const UserProfile = () => {
         <div>
             <h1>{user._user.login}</h1>
             <h1>{user._user.dateBirth}</h1>
-            <button onClick={signOut}>Выйти</button>
+            <button type="button" onClick={signOut}>Выйти</button>
         </div>
     );
 };

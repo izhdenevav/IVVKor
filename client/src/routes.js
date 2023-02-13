@@ -7,7 +7,7 @@ import UserProfile from "./pages/UserProfile";
 
 export const authRoutes = [
     {
-        path: '/user',
+        path: '/profile',
         Component: <UserProfile/>
     }
 ]

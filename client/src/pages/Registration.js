@@ -15,13 +15,13 @@ const Registration = () => {
         navigate('/')
     }
 
-    const click = async () => {
-        let data
+    const click = async (e) => {
+        e.preventDefault()
         try {
-            data = await registration(email, login, password)
+            let data = await registration(email, login, password)
             user.setUser(data)
             user.setIsAuth(true)
-            navigate('/user')
+            navigate('/profile')
         } catch (e) {
             alert("JOPA")
             alert(e.response.data.message)
@@ -43,8 +43,8 @@ const Registration = () => {
                 <div>
                     Есть аккаунт? <NavLink to='/login'>Войти в аккаунт</NavLink>
                 </div>
-                <button onClick={click} type="button">Зарегистрироваться</button>
-                <button onClick={toHome}>На главную</button>
+                <button type="button"  onClick={click} type="button">Зарегистрироваться</button>
+                <button type="submit"  onClick={toHome}>На главную</button>
             </form>
     );
 };
