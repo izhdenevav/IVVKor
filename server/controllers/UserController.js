@@ -20,7 +20,7 @@ class UserController {
         }
         const candidate = await User.findOne({where: {email} || {login}})
         if (candidate) {
-            return next(ApiError.badRequest('Эта электронная почта занята/Этот логин занят'))
+            return next(ApiError.busy('Эта электронная почта занята/Этот логин занят'))
         }
         const hashPassword = await bcrypt.hash(password, 5)
         const user = await User.create({email, login, password: hashPassword, role})
@@ -44,6 +44,7 @@ class UserController {
 
     async check(req, res) {
         const token = generateToken(req.user.id, req.user.email, req.user.login, req.user.role, req.user.photo, req.user.dateBirth)
+        console.log()
         return res.json({token})
     }
 }

@@ -2,6 +2,7 @@ import React, {useContext, useState} from 'react';
 import {NavLink, useNavigate} from "react-router-dom";
 import {Context} from "../index";
 import {registration} from "../http/userAPI";
+import styles from "../css-modules/login.module.css"
 
 const Registration = () => {
     const {user} = useContext(Context)
@@ -22,29 +23,27 @@ const Registration = () => {
             user.setUser(data)
             user.setIsAuth(true)
             navigate('/profile')
-        } catch (e) {
-            alert("JOPA")
-            alert(e.response.data.message)
+        } catch (err) {
+            alert(err.message)
         }
     }
 
     return (
-            <form>
-                <h2>Регистрация</h2>
+            <form className={ styles.login }>
+                <button className={ styles.homeButton } onClick={toHome}>На главную</button>
                 <div>
-                    <input placeholder='Введите email...' value={email} onChange={e => setEmail(e.target.value)}/>
+                    <input className={ styles.loginInput } placeholder='Введите email...' value={email} onChange={e => setEmail(e.target.value)}/>
                 </div>
                 <div>
-                    <input placeholder='Введите логин...' value={login} onChange={e => setLogin(e.target.value)}/>
+                    <input className={ styles.loginInput }  placeholder='Введите логин...' value={login} onChange={e => setLogin(e.target.value)}/>
                 </div>
                 <div>
-                    <input type={"password"} placeholder='Введите пароль...' value={password} onChange={e => setPassword(e.target.value)}/>
+                    <input className={ styles.loginInput }  type={"password"} placeholder='Введите пароль...' value={password} onChange={e => setPassword(e.target.value)}/>
                 </div>
                 <div>
                     Есть аккаунт? <NavLink to='/login'>Войти в аккаунт</NavLink>
                 </div>
-                <button type="button"  onClick={click} type="button">Зарегистрироваться</button>
-                <button type="submit"  onClick={toHome}>На главную</button>
+                <button className={ styles.finishButton } onClick={click} type="button">Зарегистрироваться</button>
             </form>
     );
 };

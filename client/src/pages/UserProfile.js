@@ -12,7 +12,6 @@ const UserProfile = () => {
         user.setUser({})
         user.setIsAuth(false)
         navigate('/')
-        console.log(user)
     }
 
     return (

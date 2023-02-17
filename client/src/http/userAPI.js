@@ -14,11 +14,8 @@ export const registration = async (email, login, password) => {
         })
 
     let middleData = await response.json()
-    localStorage.setItem('token', middleData.token)
+    cookies.set('token', middleData, {path: '/', maxAge: 60*60*24*30})
     let data = jwt_decode(middleData.token)
-    cookies.set('token', data, {path: '/', maxAge: 60*60*24*30})
-    console.log(cookies.get('token'))
-    console.log(data)
     return data
 }
 
@@ -33,12 +30,8 @@ export const login = async (email, password) => {
         })
 
     let middleData = await response.json()
-    localStorage.setItem('token', middleData.token)
+    cookies.set('token', middleData, {path: '/', maxAge: 60*60*24*30})
     let data = jwt_decode(middleData.token)
-    cookies.set('token', data, {path: '/', maxAge: 60*60*24*30})
-    //console.log(cookies.get('token'))
-    console.log(data)
-
     return data
 }
 
@@ -48,8 +41,7 @@ export const check = async () => {
         headers: new Headers({
             "Content-Type": "application/json",
             "Authorization": `Bearer ${cookies.get('token')}`
-            //"Authorization": `Bearer ${localStorage.getItem('token')}`
         })
     })
-    return jwt_decode(data.token)
+    return data
 }

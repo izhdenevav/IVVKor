@@ -1,19 +1,14 @@
-*, *::before, *::after {
-    box-sizing: border-box;
-}
-
-html {
-    height: 150%;
-    background:  linear-gradient(to bottom, white 30%, #B1B6D6);
-}
-
-body {
-    text-align: center;
-}
-
 @font-face {
     font-family: "JejuMyeongjo";
     src: local('JejuMyeongjo'), local('JejuMyeongjo'), url(JejuMyeongjo.ttf);
+}
+
+.home {
+    text-align: center;
+}
+
+.multiple-filters {
+    backdrop-filter: blur(20px) saturate(120%) contrast(200%);
 }
 
 .loginButtons {
