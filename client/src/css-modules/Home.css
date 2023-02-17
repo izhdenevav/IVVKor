@@ -1,3 +1,7 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 html {
     height: 150%;
     background:  linear-gradient(to bottom, white 30%, #B1B6D6);

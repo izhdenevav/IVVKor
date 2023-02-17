@@ -2,6 +2,7 @@ import React, {useContext, useState} from 'react';
 import {NavLink, useNavigate} from "react-router-dom";
 import {login} from "../http/userAPI";
 import {Context} from "../index";
+import "../css-modules/Login.css";
 
 const Login =  () => {
     const {user} = useContext(Context)
@@ -25,12 +26,13 @@ const Login =  () => {
     return (
         <>
             <form>
-                <h2>Авторизация</h2>
                 <div>
-                    <input placeholder='Введите email...' value={email} onChange={e => setEmail(e.target.value)}/>
-                </div>
-                <div>
-                    <input type={"password"} placeholder='Введите пароль...' value={password} onChange={e => setPassword(e.target.value)}/>
+                    <div>
+                        <input className="loginInput" placeholder='Введите email...' value={email} onChange={e => setEmail(e.target.value)}/>
+                    </div>
+                    <div>
+                        <input className="loginInput" type={"password"} placeholder='Введите пароль...' value={password} onChange={e => setPassword(e.target.value)}/>
+                    </div>
                 </div>
                 <div>
                     Нет аккаунта? <NavLink to='/registration'>Зарегистрируйся!</NavLink>

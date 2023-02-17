@@ -17,8 +17,7 @@ const Home = () => {
 
     const toCourses = (e) => {
         e.preventDefault()
-        alert("ЖОПА")
-        //navigate('/courses')
+        navigate('/courses')
     }
 
     return (
