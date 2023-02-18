@@ -43,19 +43,6 @@
     box-shadow: 0px 4px 10px 0px #F0B0CF;
 }
 
-.finishButton:disabled {
-    margin-top: 10px;
-    margin-right: 10px;
-    width: 170px;
-    height: 35px;
-    color: #211E1E;
-    border-radius: 20px;
-    margin-bottom: 20px;
-    background: lightgray;
-    border: none;
-    box-shadow: 0px 4px 10px 0px dimgray;
-}
-
 /*
 .finishButton:hover, enabled  {
     margin-top: 10px;
@@ -70,3 +57,11 @@
     box-shadow: 0px 4px 10px 0px #F0B0CF;
 }
 */
+
+.error {
+    color: red;
+    background-color: black;
+    width: 200px;
+    height: 30px;
+    font-size: 20px;
+}

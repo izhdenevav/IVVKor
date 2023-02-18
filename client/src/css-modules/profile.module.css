@@ -1,0 +1,11 @@
+.userPhoto {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.divPhoto {
+    width: 100px;
+    height: 200px;
+    overflow: hidden
+}

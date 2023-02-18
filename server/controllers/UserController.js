@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt')
 const {User} = require('../models/models')
 const ApiError = require('../error/ApiError')
 const jwt = require('jsonwebtoken')
-const jwtDecode = require("jwt-decode");
+const path = require('path')
 
 const generateToken = (id, email, login, role, photo, dateBirth) => {
     return jwt.sign(
@@ -15,6 +15,7 @@ const generateToken = (id, email, login, role, photo, dateBirth) => {
 class UserController {
     async registration(req, res, next) {
         const {email, login, password, role} = req.body
+
         if (!email || !password || !login) {
             return next(ApiError.badRequest('Пустые данные'))
         }
