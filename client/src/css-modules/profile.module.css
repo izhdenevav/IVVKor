@@ -1,3 +1,7 @@
+body {
+    margin: 0;
+}
+
 .userPhoto {
     max-width: 100%;
     height: auto;
@@ -5,7 +9,52 @@
 }
 
 .divPhoto {
-    width: 100px;
-    height: 200px;
-    overflow: hidden
+    width: 150px;
+    height: auto;
+    overflow: hidden;
+    border-radius: 20px;
 }
+
+.text {
+    font-size: 25px;
+    font-weight: normal;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.divUserInfo {
+    padding: 10px;
+    margin: 10px;
+    width: 150px;
+    height: auto;
+    text-align: center;
+    background-color: lightgray;
+}
+
+.navBar {
+    width: auto;
+    height: 45px;
+    background-color: lightgray;
+    padding: 5px;
+    text-align: right;
+}
+
+.redButton {
+    width: 50px;
+    height: 25px;
+    background-color: white;
+    border-radius: 15px;
+    text-align: center;
+    border: none;
+    margin: 5px;
+}
+
+.homeButton {
+    text-align: right;
+}
+
+.profile {
+
+}
+
+
