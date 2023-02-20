@@ -1,7 +1,16 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
 import {useNavigate} from "react-router-dom";
+import {Context} from "../index";
+import {getAllCourses} from "../http/courseAPI";
+import styles from "../css-modules/courses.module.css"
 
 const Courses = () => {
+    const {course} = useContext(Context)
+
+    useEffect(() => {
+        getAllCourses().then(data => course.setCourses(data))
+        console.log(getAllCourses())
+    }, [])
 
     const navigate = useNavigate()
 
@@ -10,11 +19,14 @@ const Courses = () => {
     }
 
     return (
-        <div>
-            <button onClick={toHome}>На главную</button>
-            <h1>Алфавит</h1>
-            <h1>Ассимиляция</h1>
-        </div>
+        <form>
+            <div>
+                <button onClick={toHome}>На главную</button>
+            </div>
+            <ul className={ styles.coursesUL }>
+                {course.courses.map(course => <li key={course.name}>{course.name}</li>)}
+            </ul>
+        </form>
     );
 };
 

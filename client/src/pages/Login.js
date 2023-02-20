@@ -21,7 +21,7 @@ const Login =  () => {
 
     const sighIn = async (e) => {
         e.preventDefault()
-        let data = await login(email, password)
+        let data = await login(email.value, password.value)
         user.setUser(data)
         user.setIsAuth(true)
         navigate('/profile')
