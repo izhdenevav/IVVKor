@@ -1,23 +1,28 @@
 import {useEffect, useState} from "react";
 
+
 export const useValidation = (value, validations) => {
     const [isEmpty, setEmpty] = useState(true)
-    const [isMinLength, setMinLength] = useState(false)
-    const [isEmail, setEmail] = useState(false)
+    const [isMinLengthWrong, setMinLengthWrong] = useState(true)
+    const [isEmailWrong, setEmailWrong] = useState(true)
     const [inputValid, setInputValid] = useState(false)
+    const [isMaxLength, setMaxLength] = useState(false)
 
     useEffect(() => {
         for (const validation in validations) {
-            switch (validations) {
-                case 'minLength':
-                    value.length < validations[validation] ? setMinLength(false) : setMinLength(true)
+            switch (validation) {
+                case 'isMinLengthWrong':
+                    value.length < validations[validation] ? setMinLengthWrong(true) : setMinLengthWrong(false)
                     break
                 case 'isEmpty':
                     value ? setEmpty(false) : setEmpty(true)
                     break
-                case 'isEmail':
-                    const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
-                    re.test(String(value).toLowerCase()) ? setEmail(true) : setEmail(false)
+                case 'isEmailWrong':
+                    const re =/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+                    re.test(String(value).toLowerCase()) ? setEmailWrong(false) : setEmailWrong(true)
+                    break
+                case 'isMaxLength':
+                    value.length > validations[validation] ? setMaxLength(true) : setMaxLength(false)
                     break
 
             }
@@ -25,15 +30,17 @@ export const useValidation = (value, validations) => {
     }, [value])
 
     useEffect(() => {
-        if (isEmpty || !isMinLength || !isEmail) {
+        if (isEmpty || isMinLengthWrong || isEmailWrong || isMaxLength) {
+            console.log(isEmpty, isMinLengthWrong, isEmailWrong, isMaxLength)
             setInputValid(false)
         } else setInputValid(true)
-    }, [isEmpty, isMinLength, isEmail])
+    }, [isEmpty, isMinLengthWrong, isEmailWrong, isMaxLength])
 
     return {
         isEmpty,
-        isMinLength,
-        isEmail,
+        isMinLengthWrong,
+        isEmailWrong,
+        isMaxLength,
         inputValid
     }
 }
