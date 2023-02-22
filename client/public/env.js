@@ -67,7 +67,7 @@ window.env = {
   "SystemRoot": "C:\\Windows",
   "TEMP": "C:\\Users\\79139\\AppData\\Local\\Temp",
   "TERMINAL_EMULATOR": "JetBrains-JediTerm",
-  "TERM_SESSION_ID": "a00d02a9-d584-41c1-94ba-8f80a2587d94",
+  "TERM_SESSION_ID": "bdee8912-fadc-474c-b3dc-aa9ac39ba155",
   "TMP": "C:\\Users\\79139\\AppData\\Local\\Temp",
   "USERDOMAIN": "MSI",
   "USERDOMAIN_ROAMINGPROFILE": "MSI",
@@ -75,5 +75,5 @@ window.env = {
   "USERPROFILE": "C:\\Users\\79139",
   "windir": "C:\\Windows",
   "ZES_ENABLE_SYSMAN": "1",
-  "__INTELLIJ_COMMAND_HISTFILE__": "C:\\Users\\79139\\AppData\\Local\\JetBrains\\WebStorm2021.3\\terminal\\history\\IVVKor-history"
+  "__INTELLIJ_COMMAND_HISTFILE__": "C:\\Users\\79139\\AppData\\Local\\JetBrains\\WebStorm2021.3\\terminal\\history\\IVVKor-history6"
 };

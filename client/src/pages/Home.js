@@ -31,10 +31,6 @@ const Home = () => {
                         <h1 className={ styles.homeKoreanWords }>세상에서 보고싶은 변화가 있다면 당신 스스로 그 변화가 되어라</h1>
                         <h2 className={ styles.homeRussianWords }>Стань тем самым изменением, которое хочешь видеть в мире</h2>
                     </div>
-                    <div className={ styles.divQuote }>
-                        <h2 className={ styles.homeRussianWords }>Даже если руки совсем опускаются, ни один человек не должен сдаваться. Не бывает безвыходных ситуаций, в любой момент можно кардинально поменять свою жизнь. Так почему бы не начать с изучения нового для вас языка? </h2>
-                        <h1 className={ styles.homeKoreanWords }>화이팅</h1>
-                    </div>
                 </div>
                 <button className={ styles.coursesButton } onClick={toCourses}>Я готов к изменениям!</button>
             </form>

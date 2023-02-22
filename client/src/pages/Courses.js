@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {Context} from "../index";
 import {getAllCourses} from "../http/courseAPI";
 import styles from "../css-modules/courses.module.css"
+import ViewCourse from "../components/ViewCourse";
 
 const Courses = () => {
     const {course} = useContext(Context)
@@ -23,8 +24,8 @@ const Courses = () => {
             <div>
                 <button onClick={toHome}>На главную</button>
             </div>
-            <ul className={ styles.coursesUL }>
-                {course.courses.map(course => <li key={course.name}>{course.name}</li>)}
+            <ul>
+                {course.courses.map(course => <ViewCourse course={course}></ViewCourse>)}
             </ul>
         </form>
     );

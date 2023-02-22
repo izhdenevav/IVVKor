@@ -1,6 +1,11 @@
 @font-face {
-    font-family: "JejuMyeongjo";
-    src: local('JejuMyeongjo'), local('JejuMyeongjo'), url(JejuMyeongjo.ttf);
+    font-family: "SingleDay";
+    src: local('SingleDay'), local('SingleDay'), url(SingleDay.ttf);
+}
+
+@font-face {
+    font-family: "Skellyman";
+    src: local('Skellyman'), local('Skellyman'), url(Skellyman.ttf);
 }
 
 .home {
@@ -14,7 +19,7 @@
 .loginButtons {
     background: transparent;
     border: transparent;
-    font-family: "JejuMyeongjo";
+    font-family: "Skellyman";
     color: #313F94;
     font-size: 15px;
     margin-right: 20px;
@@ -36,21 +41,26 @@
 }
 
 .divQuote {
-    width: 70%;
+    width: auto;
     display: inline-block;
+    margin-bottom: 10px;
 }
 
 .homeRussianWords {
-    font-family: "JejuMyeongjo";
+    margin-top: -20px;
+    font-family: "Skellyman";
     font-size: 18px;
+    width: auto;
+    text-align: right;
 }
 
 .homeKoreanWords {
-    font-size: 26px;
+    width: auto;
+    font-size: 35px;
     background: radial-gradient(20% 120%, #313F94, #AC5F75) ;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-family: "JejuMyeongjo";
+    font-family: "SingleDay";
     animation: colorChange 5s infinite alternate linear;
 }
 

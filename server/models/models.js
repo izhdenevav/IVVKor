@@ -13,7 +13,8 @@ const User = sequelize.define('user', {
 
 const Course = sequelize.define('course', {
     id: {type: DataTypes.INTEGER, allowNull: false, autoIncrement: true, primaryKey: true},
-    name: {type: DataTypes.STRING, unique: true}
+    name: {type: DataTypes.STRING, unique: true},
+    image: {type: DataTypes.STRING, defaultValue: "default-course.png"}
 })
 
 const UserCourse = sequelize.define('userCourse', {

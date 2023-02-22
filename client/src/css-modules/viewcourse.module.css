@@ -1,0 +1,32 @@
+.courseName {
+    font-family: Skellyman;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.buttonCourse {
+    background: transparent;
+
+    border: none;
+}
+
+.courseImg {
+    height: 80px;
+    width: auto;
+
+    border-radius: 10px;
+
+    background: #A099B8;
+}
+
+.divCourse {
+    height: 80px;
+    width: 30%;
+
+    display: flex;
+
+    margin: 10px;
+
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
