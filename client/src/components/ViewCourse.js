@@ -12,7 +12,7 @@ const ViewCourse = ({course}) => {
 
     return (
         <div className={ styles.divCourse }>
-            <img className={ styles.courseImg } src={process.env.REACT_APP_API_URL + 'default-course.png'}></img>
+            <img className={ styles.courseImg } src={process.env.REACT_APP_API_URL + course.image}></img>
             <button onClick={selectCourse} className={ styles.buttonCourse }>
                 <label className={ styles.courseName }>{course.name}</label>
             </button>

@@ -9,8 +9,8 @@ export const getAllCourses = async () => {
     return response.json()
 }
 
-export const findOneCourse = async () => {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}`+'ivvkor/course/all',
+export const findOneCourse = async (name) => {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}`+'ivvkor/course/' + name,
         {
             method: 'GET',
             headers: {

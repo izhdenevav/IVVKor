@@ -48,6 +48,21 @@ class UserController {
         console.log()
         return res.json({token})
     }
+
+    async redUserPhoto(req, res, next) {
+        try {
+            let {email, login} = req.body
+            const {photo} = req.files
+            let fileName = login + ".png"
+            await photo.mv(path.resolve(__dirname, '..', 'static', fileName))
+
+            const user = await User.update({photo: login + ".png"}, {where: {email: email}})
+
+            return res.json(user)
+        } catch(e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
 }
 
 module.exports = new UserController()

@@ -7,18 +7,13 @@
     background: lightgray;
 }
 
-@font-face {
-    font-family: "JejuMyeongjo";
-    src: local('JejuMyeongjo'), local('JejuMyeongjo'), url(JejuMyeongjo.ttf);
-}
-
 .inputDiv {
     display: inline-block;
 }
 
 .loginInput {
     font-size: 15px;
-    font-family: "JejuMyeongjo";
+    font-family: "Skellyman";
     color: black;
     font-weight: bold;
 
