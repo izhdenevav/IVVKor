@@ -1,14 +1,56 @@
 .login {
-    padding-top: 20px;
-    text-align: center;
-    height: auto;
+    height: 100vh;
+    width: 100vw;
+
+    background-color: rgba(0, 0, 0, 0.5);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.active {
+    composes: login;
+
+    pointer-events: all;
+    transition: 0.5s;
+    opacity: 1;
+}
+
+.login__content {
     width: 500px;
-    border-radius: 20px;
-    background: lightgray;
+    height: auto;
+
+    padding: 20px;
+    border-radius: 12px;
+    background-color: white;
+
+    transform: scale(0.5);
+    transition: 0.4s all;
+}
+
+.login__contentActive {
+    composes: login__content;
+
+    transform: scale(1);
 }
 
 .inputDiv {
     display: inline-block;
+}
+
+.inputDivHidden {
+    composes: inputDiv;
+    visibility: hidden;
+    display: none;
 }
 
 .loginInput {
@@ -28,18 +70,6 @@
     box-shadow: 0px 8px 5px 0px #F0B0CF;
 }
 
-.homeButton {
-    width: 170px;
-    height: 35px;
-    color: #211E1E;
-    border-radius: 20px;
-    margin-bottom: 20px;
-    background: linear-gradient( to right, #F0B0CF, #94003E);
-    border: none;
-    box-shadow: 0px 4px 10px 0px #F0B0CF;
-
-}
-
 .finishButton {
     margin-top: 10px;
     margin-right: 10px;
@@ -51,19 +81,6 @@
     background: linear-gradient( to right, #F0B0CF, #94003E);
     border: none;
     box-shadow: 0px 4px 10px 0px #F0B0CF;
-}
-
-.finishButton:disabled {
-    margin-top: 10px;
-    margin-right: 10px;
-    width: 180px;
-    height: 40px;
-    color: #211E1E;
-    border-radius: 20px;
-    margin-bottom: 20px;
-    background: linear-gradient( to right, gray, darkslategrey);
-    border: none;
-    box-shadow: 0px 4px 10px 0px dimgray;
 }
 
 .error {
