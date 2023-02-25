@@ -42,21 +42,21 @@ const Sign = ({active, setActive, isAuth, setAuth}) => {
             <div className={ active ? styles.login__contentActive : styles.login__content} onClick={e => e.stopPropagation()}>
                 <div>
                     <div className={ styles.inputDiv }>
-                        <input className={ styles.loginInput } placeholder='Введите email...' value={email} onChange={e => setEmail(e)}/>
+                        <input className={ styles.loginInput } placeholder='Введите email...' value={email} onChange={e => setEmail(e.target.value)}/>
                     </div>
                     <div className={ styles.inputDiv }>
-                        <input className={ styles.loginInput }  placeholder='Введите логин...' value={userLogin} onChange={e => setUserLogin(e)}/>
+                        <input className={ styles.loginInput }  placeholder='Введите логин...' value={userLogin} onChange={e => setUserLogin(e.target.value)}/>
                     </div>
                     <div className={ isAuth ? styles.inputDivHidden : styles.inputDiv }>
-                        <input className={ styles.loginInput } placeholder='Введите пароль...' value={password} onChange={e => setPassword(e)}/>
+                        <input className={ styles.loginInput } placeholder='Введите пароль...' value={password} onChange={e => setPassword(e.target.value)}/>
                     </div>
                 </div>
                 <div>
                     <label>{isAuth ? "Нет аккаунта? " : "Есть аккаунт? "}
-                        <button onClick={changeModals}>{isAuth ? "Зарегистрироваться" : "Войти"}</button>
+                        <button className={ styles.changeButton } onClick={changeModals}>{isAuth ? "Зарегистрироваться" : "Войти"}</button>
                     </label>
                 </div>
-                <button onClick={sighIn} className={ styles.finishButton }>{isAuth ? "Войти" : "Зарегистрироваться"}</button>
+                <button onClick={sighIn} className={ styles.signButton }>{isAuth ? "Войти" : "Зарегистрироваться"}</button>
             </div>
         </div>
     );
