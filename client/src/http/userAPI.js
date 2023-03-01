@@ -28,7 +28,6 @@ export const login = async (email, password) => {
                 "Content-Type": "application/json",
             }
         })
-
     let middleData = await response.json()
     cookies.set('token', middleData, {path: '/', maxAge: 60*60*24*30})
     let data = jwt_decode(middleData.token)

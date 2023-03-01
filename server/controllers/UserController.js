@@ -36,6 +36,7 @@ class UserController {
             return next(ApiError.badRequest('Такого пользователя не существует'))
         }
         let comparePassword = bcrypt.compareSync(password, user.password)
+        console.log(req.body)
         if (!comparePassword) {
             return next(ApiError.badRequest('Неправильный пароль'))
         }
@@ -45,7 +46,6 @@ class UserController {
 
     async check(req, res) {
         const token = generateToken(req.user.id, req.user.email, req.user.login, req.user.role, req.user.photo, req.user.dateBirth)
-        console.log()
         return res.json({token})
     }
 

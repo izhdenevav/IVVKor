@@ -1,17 +1,11 @@
 import React, {useContext, useEffect} from 'react';
 import {useNavigate} from "react-router-dom";
 import {Context} from "../index";
-import {getAllCourses} from "../http/courseAPI";
 import styles from "../css-modules/courses.module.css"
 import ViewCourse from "../components/ViewCourse";
 
 const Courses = () => {
     const {course} = useContext(Context)
-
-    useEffect(() => {
-        getAllCourses().then(data => course.setCourses(data))
-        console.log(getAllCourses())
-    }, [])
 
     const navigate = useNavigate()
 

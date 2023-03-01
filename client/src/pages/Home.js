@@ -1,16 +1,23 @@
-import React, {useMemo, useState} from 'react';
+import React, {useContext, useMemo, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import styles from "../css-modules/home.module.css";
 import Sign from "../components/ModalWindows/Sign";
+import {Context} from "../index";
+import {getAllCourses} from "../http/courseAPI";
 
 const Home = () => {
+    const {course} = useContext(Context)
+
+
     const [modalActive, setModalActive] = useState(false)
     const [isAuth, setAuth] = useState(true)
 
     const navigate = useNavigate()
 
-    const toCourses = (e) => {
+    const toCourses = async (e) => {
         e.preventDefault()
+        let data = await getAllCourses()
+        course.setCourses(data)
         navigate('/courses')
     }
 
