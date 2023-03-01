@@ -27,6 +27,12 @@
     font-weight: bold;
 }
 
+.loginButtonsInvisible {
+    composes: loginButtons;
+
+    transform: scale(0);
+}
+
 .coursesButton {
     background: linear-gradient(to right, #A099B8, #F8D9E1);
     width: 200px;

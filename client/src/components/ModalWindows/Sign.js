@@ -3,8 +3,9 @@ import styles from '../../css-modules/signModal.module.css'
 import {login, registration} from "../../http/userAPI";
 import {Context} from "../../index";
 import {useNavigate} from "react-router-dom";
+import {observer} from "mobx-react-lite";
 
-const Sign = ({active, setActive, isAuth, setAuth}) => {
+const Sign = observer(({active, setActive, isAuth, setAuth}) => {
     const {user} = useContext(Context)
 
     const [email, setEmail] = useState('')
@@ -29,7 +30,6 @@ const Sign = ({active, setActive, isAuth, setAuth}) => {
                 let data = await registration(email, userLogin, password)
                 user.setUser(data)
                 user.setIsAuth(true)
-                navigate('/profile')
             } catch (err) {
                 alert(err.message)
             }
@@ -60,6 +60,6 @@ const Sign = ({active, setActive, isAuth, setAuth}) => {
             </div>
         </div>
     );
-};
+})
 
 export default Sign;
