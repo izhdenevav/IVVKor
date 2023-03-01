@@ -29,11 +29,18 @@ const Home = observer(() => {
         setModalActive(true)
     }
 
+    const toProfile = () => {
+        navigate('/profile')
+    }
+
+    let userPhoto = process.env.REACT_APP_API_URL + user._user.photo
+
     return (
         <form className={ styles.home }>
             <div className={ styles.homeToProfileDiv }>
                 <button className={ user._isAuth ? styles.loginButtonsInvisible : styles.loginButtons } onClick={toLoginPage}>Вход</button>
                 <button className={ user._isAuth ? styles.loginButtonsInvisible : styles.loginButtons } onClick={toRegistrationPage}>Регистрация</button>
+                <img onClick={toProfile} className={ user._isAuth ? styles.userImg : styles.userImgInvisible } src={userPhoto}></img>
             </div>
             <div>
                 <div className={ styles.divQuote }>

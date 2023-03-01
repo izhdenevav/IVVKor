@@ -16,6 +16,18 @@
     backdrop-filter: blur(20px) saturate(120%) contrast(200%);
 }
 
+.userImg {
+    width: 50px;
+    height: auto;
+    margin: 10px;
+}
+
+.userImgInvisible {
+    composes: userImg;
+
+    display: none;
+}
+
 .loginButtons {
     background: transparent;
     border: transparent;
@@ -30,7 +42,7 @@
 .loginButtonsInvisible {
     composes: loginButtons;
 
-    transform: scale(0);
+    display: none;
 }
 
 .coursesButton {
