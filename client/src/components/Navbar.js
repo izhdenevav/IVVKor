@@ -9,7 +9,9 @@ import BurgerMenu from "./ModalWindows/BurgerMenu";
 const Navbar = observer(() => {
     const {user} = useContext(Context)
 
-    const [modalActive, setModalActive] = useState(false)
+    const [menuActive, setMenuActive] = useState(false)
+    const [signActive, setSignActive] = useState(false)
+    const [isAuth, setAuth] = useState(true)
 
     const navigate = useNavigate()
 
@@ -18,10 +20,10 @@ const Navbar = observer(() => {
         navigate('/courses')
     }
 
-/*    const toProfile = (e) => {
-        e.preventDefault()
-        navigate('/profile')
-    }*/
+    const toLogin = () => {
+        setAuth(true)
+        setSignActive(true)
+    }
 
     const toHome = (e) => {
         e.preventDefault()
@@ -34,8 +36,10 @@ const Navbar = observer(() => {
         <div className={ styles.container }>
             <label onClick={ toHome } className={ styles.name }>IVVkor</label>
             <button className={ styles.buttonToCourses } onClick={toCourses}>Курсы</button>
-            <img onClick={() => setModalActive(true) } className={ user._isAuth ? styles.userImg : styles.userImgInvisible } src={userPhoto}/>
-            <BurgerMenu isActive={modalActive} setActive={setModalActive}/>
+            <img onClick={() => setMenuActive(true) } className={ user._isAuth ? styles.userImg : styles.userImgInvisible } src={userPhoto}/>
+            <button className={ user._isAuth ? styles.buttonSignInInvisible : styles.buttonSignIn } onClick={toLogin}>Вход</button>
+            <BurgerMenu isActive={menuActive} setActive={setMenuActive}/>
+            <Sign active={signActive} isAuth={isAuth} setActive={setSignActive} setAuth={setAuth}/>
         </div>
     );
 })

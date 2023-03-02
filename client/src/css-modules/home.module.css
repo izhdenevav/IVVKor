@@ -23,30 +23,7 @@
 /*    background: #A099B8;*/
 }
 
-.containerSignIn {
-    width: auto;
-    height: auto;
 
-    text-align: center;
-}
-
-.buttonSignIn {
-    font-family: "Montserrat Alternates";
-    font-size: 15px;
-    font-weight: bold;
-    color: #313F94;
-
-    background: transparent;
-    border: transparent;
-
-    margin-right: 20px;
-}
-
-.buttonSignInInvisible {
-    composes: buttonSignIn;
-
-    display: none;
-}
 
 .multiple-filters {
     backdrop-filter: blur(20px) saturate(120%) contrast(200%);

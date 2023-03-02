@@ -41,3 +41,20 @@
 
     display: none;
 }
+
+.buttonSignIn {
+    font-family: "Montserrat Alternates";
+    font-size: 25px;
+    color: #313F94;
+
+    background: transparent;
+    border: transparent;
+
+    margin-right: 20px;
+}
+
+.buttonSignInInvisible {
+    composes: buttonSignIn;
+
+    display: none;
+}
