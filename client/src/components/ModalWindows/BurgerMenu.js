@@ -18,9 +18,12 @@ const BurgerMenu = observer(({isActive, setActive}) => {
         navigate('/')
     }
 
-    const toProfile = (e) => {
-        e.preventDefault()
+    const toProfile = () => {
         navigate('/profile')
+    }
+
+    const toRedactProfile = () => {
+        navigate('/h')
     }
 
     return (
@@ -34,7 +37,7 @@ const BurgerMenu = observer(({isActive, setActive}) => {
                     <button onClick={ toProfile } className={ styles.buttonItem }>Профиль</button>
                 </div>
                 <div className={ styles.divItem }>
-                    <button className={ styles.buttonItem }>Настройки</button>
+                    <button onClick={ toRedactProfile } className={ styles.buttonItem }>Настройки</button>
                 </div>
                 <div className={ styles.divItem }>
                     <button onClick={ signOut } className={ styles.buttonItem }>Выйти</button>

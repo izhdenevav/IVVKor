@@ -2,11 +2,16 @@ import Home from "./pages/Home";
 import Courses from "./pages/Courses";
 import Course from "./pages/Course"
 import UserProfile from "./pages/UserProfile";
+import RedactProfile from "./components/ModalWindows/RedactProfile";
 
 export const authRoutes = [
     {
         path: '/profile',
         Component: <UserProfile/>
+    },
+    {
+        path: '/h',
+        Component: <RedactProfile/>
     }
 ]
 

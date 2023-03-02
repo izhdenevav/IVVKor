@@ -20,7 +20,8 @@ const Navbar = observer(() => {
         navigate('/courses')
     }
 
-    const toLogin = () => {
+    const toLogin = (e) => {
+        e.preventDefault()
         setAuth(true)
         setSignActive(true)
     }

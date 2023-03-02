@@ -1,30 +1,12 @@
 import React, {useContext, useMemo, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import styles from "../css-modules/home.module.css";
-import Sign from "../components/ModalWindows/Sign";
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
 import Quote from "../components/Quote";
 import Navbar from "../components/Navbar";
 
-const Home = observer(() => {
-    const {user} = useContext(Context)
-
-/*    const [modalActive, setModalActive] = useState(false)
-    const [isAuth, setAuth] = useState(true)*/
-
-/*    const toLoginPage = (e) => {
-        e.preventDefault()
-        setAuth(true)
-        setModalActive(true)
-    }
-
-    const toRegistrationPage = (e) => {
-        e.preventDefault()
-        setAuth(false)
-        setModalActive(true)
-    }*/
-
+const Home =() => {
     return (
         <div>
             <Navbar/>
@@ -33,6 +15,6 @@ const Home = observer(() => {
             </div>
         </div>
     );
-})
+};
 
 export default Home;

@@ -14,8 +14,9 @@ export const registration = async (email, login, password) => {
         })
 
     let middleData = await response.json()
-    cookies.set('token', middleData, {path: '/', maxAge: 60*60*24*30})
+    cookies.set('token', middleData.token, {path: '/', maxAge: 60*60*24*30})
     let data = jwt_decode(middleData.token)
+    console.log("reg " + data)
     return data
 }
 
@@ -29,22 +30,21 @@ export const login = async (email, password) => {
             }
         })
     let middleData = await response.json()
-    cookies.set('token', middleData, {path: '/', maxAge: 60*60*24*30})
+    cookies.set('token', middleData.token, {path: '/', maxAge: 60*60*24*30})
     let data = jwt_decode(middleData.token)
     return data
 }
 
 export const check = async () => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}`+'ivvkor/user/auth', {
-        method: 'GET',
-        headers: new Headers({
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${cookies.get('token')}`
-        })
+            method: 'GET',
+            headers: new Headers({
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${cookies.get('token')}`
+            })
     })
 
     let middleData = await response.json()
-    cookies.set('token', middleData, {path: '/', maxAge: 60*60*24*30})
-    let data = jwt_decode(middleData.token)
-    return data
+    cookies.set('token', middleData.token, {path: '/', maxAge: 60*60*24*30})
+    return jwt_decode(middleData.token)
 }

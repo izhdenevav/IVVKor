@@ -1,6 +1,5 @@
 import React, {useContext} from 'react';
 import {Context} from "../index";
-import {useNavigate} from "react-router-dom";
 import styles from "../css-modules/profile.module.css"
 import {observer} from "mobx-react-lite";
 import Navbar from "../components/Navbar";
@@ -13,7 +12,7 @@ const toNormalDate = (date) => {
     return day + "." + month + "." + year
 }
 
-const UserProfile = observer(() => {
+const UserProfile = () => {
     const {user} = useContext(Context)
 
     let userPhoto = process.env.REACT_APP_API_URL + user._user.photo
@@ -27,10 +26,9 @@ const UserProfile = observer(() => {
                 </div>
                 <h1 className={ styles.text }>{user._user.login}</h1>
                 <h1 className={ styles.text }>{toNormalDate(user._user.dateBirth)}</h1>
-                <button className={ styles.redButton } >ред.</button>
             </div>
         </div>
     );
-})
+};
 
 export default UserProfile;
