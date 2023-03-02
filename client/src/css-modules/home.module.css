@@ -8,78 +8,48 @@
     src: local('Skellyman'), local('Skellyman'), url(Skellyman.ttf);
 }
 
-.home {
+@font-face {
+    font-family: "Montserrat Alternates";
+    src: local('SMontserrat Alternates'), local('Montserrat Alternates'), url(MontserratAlternates.ttf);
+}
+
+.containerMain {
+    max-width: 90%;
+
+    margin: 0px auto;
+
     text-align: center;
+
+/*    background: #A099B8;*/
+}
+
+.containerSignIn {
+    width: auto;
+    height: auto;
+
+    text-align: center;
+}
+
+.buttonSignIn {
+    font-family: "Montserrat Alternates";
+    font-size: 15px;
+    font-weight: bold;
+    color: #313F94;
+
+    background: transparent;
+    border: transparent;
+
+    margin-right: 20px;
+}
+
+.buttonSignInInvisible {
+    composes: buttonSignIn;
+
+    display: none;
 }
 
 .multiple-filters {
     backdrop-filter: blur(20px) saturate(120%) contrast(200%);
-}
-
-.userImg {
-    width: 50px;
-    height: auto;
-    margin: 10px;
-}
-
-.userImgInvisible {
-    composes: userImg;
-
-    display: none;
-}
-
-.loginButtons {
-    background: transparent;
-    border: transparent;
-    font-family: "Skellyman";
-    color: #313F94;
-    font-size: 15px;
-    margin-right: 20px;
-    margin-top: 10px;
-    font-weight: bold;
-}
-
-.loginButtonsInvisible {
-    composes: loginButtons;
-
-    display: none;
-}
-
-.coursesButton {
-    background: linear-gradient(to right, #A099B8, #F8D9E1);
-    width: 200px;
-    height: 35px;
-    border: none;
-    border-radius: 20px;
-    box-shadow: 0px 4px 4px 0px lightgray;
-}
-
-.homeToProfileDiv {
-    text-align: right;
-}
-
-.divQuote {
-    width: auto;
-    display: inline-block;
-    margin-bottom: 10px;
-}
-
-.homeRussianWords {
-    margin-top: -20px;
-    font-family: "Skellyman";
-    font-size: 18px;
-    width: auto;
-    text-align: right;
-}
-
-.homeKoreanWords {
-    width: auto;
-    font-size: 35px;
-    background: radial-gradient(20% 120%, #313F94, #AC5F75) ;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-family: "SingleDay";
-    animation: colorChange 5s infinite alternate linear;
 }
 
 @keyframes colorChange {

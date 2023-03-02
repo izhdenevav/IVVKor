@@ -1,0 +1,30 @@
+.containerQuote {
+    margin: 10px auto;
+    padding: 10px;
+
+    width: 80%;
+    height: auto;
+}
+
+.russianQuote {
+    display: block;
+    text-align: right;
+
+    font-family: "Montserrat Alternates";
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.koreanQuote {
+    text-align: right;
+    display: block;
+
+    font-size: 35px;
+    font-family: "SingleDay";
+    font-weight: bold;
+
+    background: radial-gradient(20% 120%, #313F94, #AC5F75) ;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: colorChange 5s infinite alternate linear;
+}

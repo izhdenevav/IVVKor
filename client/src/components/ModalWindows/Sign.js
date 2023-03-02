@@ -42,17 +42,17 @@ const Sign = observer(({active, setActive, isAuth, setAuth}) => {
             <div className={ active ? styles.login__contentActive : styles.login__content} onClick={e => e.stopPropagation()}>
                 <div>
                     <div className={ styles.inputDiv }>
-                        <input className={ styles.loginInput } placeholder='Введите email...' value={email} onChange={e => setEmail(e.target.value)}/>
+                        <input className={ styles.inputSign } placeholder='Введите email...' value={email} onChange={e => setEmail(e.target.value)}/>
                     </div>
                     <div className={ isAuth ? styles.inputDivHidden : styles.inputDiv}>
-                        <input className={ styles.loginInput }  placeholder='Введите логин...' value={userLogin} onChange={e => setUserLogin(e.target.value)}/>
+                        <input className={ styles.inputSign }  placeholder='Введите логин...' value={userLogin} onChange={e => setUserLogin(e.target.value)}/>
                     </div>
                     <div className={ styles.inputDiv  }>
-                        <input className={ styles.loginInput } placeholder='Введите пароль...' value={password} onChange={e => setPassword(e.target.value)}/>
+                        <input className={ styles.inputSign } placeholder='Введите пароль...' value={password} onChange={e => setPassword(e.target.value)}/>
                     </div>
                 </div>
                 <div>
-                    <label>{isAuth ? "Нет аккаунта? " : "Есть аккаунт? "}
+                    <label className={ styles.label }>{isAuth ? "Нет аккаунта? " : "Есть аккаунт? "}
                         <button className={ styles.changeButton } onClick={changeModals}>{isAuth ? "Зарегистрироваться" : "Войти"}</button>
                     </label>
                 </div>

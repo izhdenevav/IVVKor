@@ -3,6 +3,7 @@ import {Context} from "../index";
 import {useNavigate} from "react-router-dom";
 import styles from "../css-modules/profile.module.css"
 import {observer} from "mobx-react-lite";
+import Navbar from "../components/Navbar";
 
 const toNormalDate = (date) => {
     let year = date.substr(0, 4)
@@ -15,28 +16,11 @@ const toNormalDate = (date) => {
 const UserProfile = observer(() => {
     const {user} = useContext(Context)
 
-    const navigate = useNavigate()
-
-    const signOut = async (e) => {
-        e.preventDefault()
-        user.setUser({})
-        user.setIsAuth(false)
-        navigate('/')
-    }
-
-    const toHome = () => {
-        navigate('/')
-    }
-
     let userPhoto = process.env.REACT_APP_API_URL + user._user.photo
 
-
     return (
-        <form className={ styles.profile }>
-            <div className={ styles.navBar } onClick={toHome}>
-                <button className={ styles.homeButton } onClick={signOut}>Выйти</button>
-                <button>На главную</button>
-            </div>
+        <div className={ styles.profile }>
+            <Navbar/>
             <div className={ styles.divUserInfo }>
                 <div className={ styles.divPhoto }>
                     <img className={ styles.userPhoto } src={userPhoto}></img>
@@ -45,7 +29,7 @@ const UserProfile = observer(() => {
                 <h1 className={ styles.text }>{toNormalDate(user._user.dateBirth)}</h1>
                 <button className={ styles.redButton } >ред.</button>
             </div>
-        </form>
+        </div>
     );
 })
 
