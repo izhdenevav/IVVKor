@@ -47,7 +47,7 @@ window.env = {
   "NUMBER_OF_PROCESSORS": "8",
   "OneDrive": "C:\\Users\\79139\\OneDrive",
   "OS": "Windows_NT",
-  "Path": "C:\\Users\\79139\\WebstormProjects\\IVVKor\\client\\node_modules\\.bin;C:\\Users\\79139\\WebstormProjects\\IVVKor\\node_modules\\.bin;C:\\Users\\79139\\WebstormProjects\\node_modules\\.bin;C:\\Users\\79139\\node_modules\\.bin;C:\\Users\\node_modules\\.bin;C:\\node_modules\\.bin;C:\\Users\\79139\\AppData\\Roaming\\npm\\node_modules\\npm\\node_modules\\@npmcli\\run-script\\lib\\node-gyp-bin;C:\\Program Files\\Common Files\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files\\Azure Data Studio\\bin;C:\\Program Files\\dotnet\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Inprise\\vbroker\\bin;C:\\Program Files\\Borland\\Delphi7\\Bin;C:\\Program Files\\Borland\\Delphi7\\Projects\\Bpl;C:\\Program Files\\Git\\cmd;C:\\Program Files\\nodejs\\;C:\\Users\\79139\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\;C:\\Users\\79139\\AppData\\Local\\Programs\\Python\\Python310\\;C:\\Users\\79139\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Program Files\\Azure Data Studio\\bin;C:\\Users\\79139\\.dotnet\\tools;C:\\Program Files\\JetBrains\\IntelliJ IDEA Community Edition 2021.3.2\\bin;;C:\\Users\\79139\\AppData\\Roaming\\npm;C:\\Program Files\\JetBrains\\PyCharm Community Edition 2022.3.2\\bin;",
+  "Path": "C:\\Users\\79139\\WebstormProjects\\IVVKor\\client\\node_modules\\.bin;C:\\Users\\79139\\WebstormProjects\\IVVKor\\node_modules\\.bin;C:\\Users\\79139\\WebstormProjects\\node_modules\\.bin;C:\\Users\\79139\\node_modules\\.bin;C:\\Users\\node_modules\\.bin;C:\\node_modules\\.bin;C:\\Users\\79139\\AppData\\Roaming\\npm\\node_modules\\npm\\node_modules\\@npmcli\\run-script\\lib\\node-gyp-bin;C:\\Program Files\\Common Files\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files\\Azure Data Studio\\bin;C:\\Program Files\\dotnet\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Inprise\\vbroker\\bin;C:\\Program Files\\Borland\\Delphi7\\Bin;C:\\Program Files\\Borland\\Delphi7\\Projects\\Bpl;C:\\Program Files\\Git\\cmd;C:\\Program Files\\nodejs\\;C:\\Users\\79139\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\;C:\\Users\\79139\\AppData\\Local\\Programs\\Python\\Python310\\;C:\\Users\\79139\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Program Files\\Azure Data Studio\\bin;C:\\Users\\79139\\.dotnet\\tools;C:\\Program Files\\JetBrains\\IntelliJ IDEA Community Edition 2021.3.2\\bin;;C:\\Users\\79139\\AppData\\Roaming\\npm;C:\\Program Files\\JetBrains\\PyCharm Community Edition 2022.3.2\\bin;",
   "PATHEXT": ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL",
   "PROCESSOR_ARCHITECTURE": "AMD64",
   "PROCESSOR_IDENTIFIER": "Intel64 Family 6 Model 140 Stepping 1, GenuineIntel",
@@ -67,7 +67,7 @@ window.env = {
   "SystemRoot": "C:\\Windows",
   "TEMP": "C:\\Users\\79139\\AppData\\Local\\Temp",
   "TERMINAL_EMULATOR": "JetBrains-JediTerm",
-  "TERM_SESSION_ID": "e6390333-249a-4e49-9db1-af4ffc434c46",
+  "TERM_SESSION_ID": "f3935add-ef07-4e9d-b170-0502d7396623",
   "TMP": "C:\\Users\\79139\\AppData\\Local\\Temp",
   "USERDOMAIN": "MSI",
   "USERDOMAIN_ROAMINGPROFILE": "MSI",
@@ -75,5 +75,5 @@ window.env = {
   "USERPROFILE": "C:\\Users\\79139",
   "windir": "C:\\Windows",
   "ZES_ENABLE_SYSMAN": "1",
-  "__INTELLIJ_COMMAND_HISTFILE__": "C:\\Users\\79139\\AppData\\Local\\JetBrains\\WebStorm2021.3\\terminal\\history\\IVVKor-history7"
+  "__INTELLIJ_COMMAND_HISTFILE__": "C:\\Users\\79139\\AppData\\Local\\JetBrains\\WebStorm2021.3\\terminal\\history\\IVVKor-history"
 };

@@ -3,9 +3,12 @@ import styles from '../../css-modules/burgerMenu.module.css';
 import {observer} from "mobx-react-lite";
 import {Context} from "../../index";
 import {useNavigate} from "react-router-dom";
+import Cookies from "universal-cookie";
 
 const BurgerMenu = observer(({isActive, setActive}) => {
     const {user} = useContext(Context)
+
+    const cookies = new Cookies()
 
     let userPhoto = process.env.REACT_APP_API_URL + user._user.photo
 
