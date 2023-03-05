@@ -39,6 +39,23 @@ export const logout = async() => {
     })
 }
 
+export const getUserCourses = async(id) => {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}`+'ivvkor/user/getUserCourses',
+        {
+            method: 'POST',
+            body: JSON.stringify({id}),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+
+    let middleData = await response.json()
+
+    console.log(middleData)
+
+    return middleData
+}
+
 export const check = async() => {
     await fetch(`${process.env.REACT_APP_API_URL}`+'ivvkor/user/auth', {
         method: 'GET',

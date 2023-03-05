@@ -10,7 +10,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
         <Context.Provider value={{
             user: new UserStore(),
-            course: new CourseStore()
+            course: new CourseStore(),
+            userCourses: new CourseStore()
         }}>
             <App />
         </Context.Provider>

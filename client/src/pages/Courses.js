@@ -13,6 +13,8 @@ const Courses = observer(() => {
         getAllCourses().then(data => course.setCourses(data))
     }, [])
 
+    console.log(course)
+
     return (
         <div>
             <Navbar/>

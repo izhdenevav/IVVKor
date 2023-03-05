@@ -1,8 +1,11 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {Context} from "../index";
 import styles from "../css-modules/profile.module.css"
 import {observer} from "mobx-react-lite";
 import Navbar from "../components/Navbar";
+import ViewCourse from "../components/ViewCourse";
+import {getUserCourses} from "../http/userAPI";
+import CourseStore from "../store/CourseStore";
 
 const toNormalDate = (date) => {
     let year = date.substr(0, 4)
@@ -12,23 +15,36 @@ const toNormalDate = (date) => {
     return day + "." + month + "." + year
 }
 
-const UserProfile = () => {
-    const {user} = useContext(Context)
+const UserProfile = observer(() => {
+    const {user, userCourses} = useContext(Context)
+
+    useEffect(() => {
+        getUserCourses(user._user.id).then(data => userCourses.setCourses(data))
+    }, [])
+
+    console.log("fff " + userCourses)
 
     let userPhoto = process.env.REACT_APP_API_URL + user._user.photo
 
     return (
-        <div className={ styles.profile }>
+        <div>
             <Navbar/>
-            <div className={ styles.divUserInfo }>
-                <div className={ styles.divPhoto }>
-                    <img className={ styles.userPhoto } src={userPhoto}></img>
+            <div  className={ styles.profile }>
+                <div className={ styles.divUserInfo }>
+                    <div className={ styles.divPhoto }>
+                        <img className={ styles.userPhoto } src={userPhoto}></img>
+                    </div>
+                    <h1 className={ styles.text }>{user._user.login}</h1>
+                    <h1 className={ styles.text }>{toNormalDate(user._user.dateBirth)}</h1>
                 </div>
-                <h1 className={ styles.text }>{user._user.login}</h1>
-                <h1 className={ styles.text }>{toNormalDate(user._user.dateBirth)}</h1>
+                <div className={ styles.ulCourses }>
+                    <ul>
+                        {userCourses.courses.map(userCourse => <ViewCourse key={userCourse.name} course={userCourse}></ViewCourse>)}
+                    </ul>
+                </div>
             </div>
         </div>
     );
-};
+})
 
 export default UserProfile;

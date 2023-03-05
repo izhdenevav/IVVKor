@@ -49,8 +49,12 @@
     text-align: right;
 }
 
-.profile {
+.ulCourses {
 
+}
+
+.profile {
+    display: flex;
 }
 
 

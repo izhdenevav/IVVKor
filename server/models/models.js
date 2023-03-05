@@ -25,5 +25,6 @@ Course.belongsToMany(User, {through: UserCourse})
 
 module.exports = {
     User,
-    Course
+    Course,
+    UserCourse
 }

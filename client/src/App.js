@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from "react";
 import {BrowserRouter} from "react-router-dom";
 import AppRouter from "./components/AppRouter";
 import {Context} from "./index";
-import {check} from "./http/userAPI";
+import {check, getUserCourses} from "./http/userAPI";
 import {observer} from "mobx-react-lite";
 
 const App = observer(() => {
@@ -11,7 +11,6 @@ const App = observer(() => {
 
         useEffect(() => {
             check().then(data => {
-                console.log(data)
                 user.setUser(data)
                 user.setIsAuth(true)
             }).finally(() => setLoading(false))

@@ -9,7 +9,7 @@ router.post('/login', userController.login) //авторизация
 router.get('/auth', authMiddleware, userController.check) //аутентификация
 router.post('/redPhoto', userController.redUserPhoto) //меняем фото
 router.delete('/logout', userController.logout) //выходим
-
-
+router.post('/addUserCourse', userController.addUserCourse) //добавить курс пользователю
+router.post('/getUserCourses', userController.getUserCourses) //получить курсы пользователя
 
 module.exports = router

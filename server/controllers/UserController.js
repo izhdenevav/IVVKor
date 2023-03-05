@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt')
-const {User} = require('../models/models')
+const {User, UserCourse, Course} = require('../models/models')
 const ApiError = require('../error/ApiError')
 const jwt = require('jsonwebtoken')
 const path = require('path')
@@ -41,6 +41,7 @@ class UserController {
     async login(req, res) {
         const {email, password} = req.body
         const user = await User.findOne({where: {email}})
+
         if (!user) {
             return res.message('Такого пользователя не существует')
         }
@@ -49,8 +50,6 @@ class UserController {
             return res.message('Неправильный пароль')
         }
         const token = generateToken(user.id, user.email, user.login, user.role, user.photo, user.dateBirth)
-
-        console.log(token)
 
         res.cookie(TOKEN_COOKIE_NAME, token, {
             maxAge: 24 * 60 * 60 * 1000,
@@ -61,11 +60,23 @@ class UserController {
         res.end()
     }
 
-    async addUserCourse() {
+    async addUserCourse(req, res) {
+        const {userId, courseId} = req.body
 
+        await UserCourse.create({userId, courseId})
+
+        res.end()
     }
 
-    async getUserCourse(req, res) {
+    async getUserCourses(req, res) {
+        const {id} = req.body
+
+        const user = await User.findOne({
+            where: {id},
+            include: Course
+        })
+
+        return res.json(user.courses)
     }
 
     async logout(req, res) {
