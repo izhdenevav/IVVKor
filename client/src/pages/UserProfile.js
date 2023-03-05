@@ -18,11 +18,13 @@ const toNormalDate = (date) => {
 const UserProfile = observer(() => {
     const {user, userCourses} = useContext(Context)
 
-    useEffect(() => {
-        getUserCourses(user._user.id).then(data => userCourses.setCourses(data))
-    }, [])
+    const middle = new CourseStore()
 
-    console.log("fff " + userCourses)
+    useEffect(() => {
+        getUserCourses(user._user.id).then(data => middle.setCourses(data))
+
+        console.log(middle.courses)
+    }, [])
 
     let userPhoto = process.env.REACT_APP_API_URL + user._user.photo
 
@@ -39,7 +41,7 @@ const UserProfile = observer(() => {
                 </div>
                 <div className={ styles.ulCourses }>
                     <ul>
-                        {userCourses.courses.map(userCourse => <ViewCourse key={userCourse.name} course={userCourse}></ViewCourse>)}
+{/*                        {userCourses.courses.map(userCourse => <ViewCourse key={userCourse.name} course={userCourse}></ViewCourse>)}*/}
                     </ul>
                 </div>
             </div>

@@ -12,18 +12,21 @@ const BurgerMenu = observer(({isActive, setActive}) => {
 
     const navigate = useNavigate()
 
-    const signOut = async () => {
+    const signOut = async (e) => {
+        e.preventDefault()
         await logout()
         user.setUser({})
         user.setIsAuth(false)
         navigate('/')
     }
 
-    const toProfile = () => {
+    const toProfile = (e) => {
+        e.preventDefault()
         navigate('/profile')
     }
 
-    const toRedactProfile = () => {
+    const toRedactProfile = (e) => {
+        e.preventDefault()
         navigate('/h')
     }
 
@@ -40,7 +43,7 @@ const BurgerMenu = observer(({isActive, setActive}) => {
                 <div className={ styles.divItem }>
                     <button onClick={ toRedactProfile } className={ styles.buttonItem }>Настройки</button>
                 </div>
-                <div className={ styles.divItem }>
+                <div onClick={ signOut } className={ styles.divItem }>
                     <button onClick={ signOut } className={ styles.buttonItem }>Выйти</button>
                 </div>
             </div>

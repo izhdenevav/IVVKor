@@ -49,6 +49,7 @@ class UserController {
         if (!comparePassword) {
             return res.message('Неправильный пароль')
         }
+
         const token = generateToken(user.id, user.email, user.login, user.role, user.photo, user.dateBirth)
 
         res.cookie(TOKEN_COOKIE_NAME, token, {
@@ -85,15 +86,7 @@ class UserController {
     }
 
     async check(req, res) {
-        const token = generateToken(req.body)
-
-        res.cookie(TOKEN_COOKIE_NAME, token, {
-            maxAge: 24 * 60 * 60 * 1000,
-            secure: true,
-            path: '/'
-        });
-
-        res.end()
+        return res.json(true)
     }
 
     async redUserPhoto(req, res, next) {

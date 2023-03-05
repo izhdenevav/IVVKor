@@ -6,7 +6,7 @@ import {observer} from "mobx-react-lite";
 import Quote from "../components/Quote";
 import Navbar from "../components/Navbar";
 
-const Home =() => {
+const Home = observer(() => {
     return (
         <div>
             <Navbar/>
@@ -15,6 +15,6 @@ const Home =() => {
             </div>
         </div>
     );
-};
+})
 
 export default Home;

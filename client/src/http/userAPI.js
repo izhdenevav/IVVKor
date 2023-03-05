@@ -11,8 +11,6 @@ export const registration = async (email, login, password) => {
             credentials: 'include'
         })
 
-    console.log(cookies.get('token'))
-
     return jwt_decode(cookies.get('token'))
 }
 
@@ -26,8 +24,6 @@ export const login = async (email, password) => {
                 'content-type': 'application/json'
             }
         })
-
-    console.log(cookies.get('token'))
 
     return jwt_decode(cookies.get('token'))
 }
@@ -49,11 +45,20 @@ export const getUserCourses = async(id) => {
             }
         })
 
-    let middleData = await response.json()
-
-    console.log(middleData)
+    const middleData = await response.json()
 
     return middleData
+}
+
+export const addUserCourse = async(userId, courseId) => {
+    await fetch(`${process.env.REACT_APP_API_URL}`+'ivvkor/user/addUserCourse',
+        {
+            method: 'POST',
+            body: JSON.stringify({userId, courseId}),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
 }
 
 export const check = async() => {

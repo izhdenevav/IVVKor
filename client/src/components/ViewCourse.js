@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from '../css-modules/viewcourse.module.css';
 import {useNavigate} from "react-router-dom";
+import {observer} from "mobx-react-lite";
 
 const ViewCourse = ({course}) => {
 

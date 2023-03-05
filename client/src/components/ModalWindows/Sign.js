@@ -1,18 +1,18 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useHistory} from 'react';
 import styles from '../../css-modules/signModal.module.css'
 import {login, registration} from "../../http/userAPI";
 import {Context} from "../../index";
-import {useNavigate} from "react-router-dom";
 import {observer} from "mobx-react-lite";
+import {useNavigate} from "react-router-dom";
 
 const Sign = observer(({active, setActive, isAuth, setAuth}) => {
     const {user} = useContext(Context)
 
+    const navigate = useNavigate()
+
     const [email, setEmail] = useState('')
     const [userLogin, setUserLogin] = useState('')
     const [password, setPassword] = useState('')
-
-    const navigate = useNavigate()
 
     const changeModals = (e) => {
         e.preventDefault()
