@@ -19,8 +19,7 @@ const Sign = observer(({active, setActive, isAuth, setAuth}) => {
         isAuth ? setAuth(false) : setAuth(true)
     }
 
-    const sighIn = async (e) => {
-        e.preventDefault()
+    const sighIn = async () => {
         if (isAuth) {
             let data = await login(email, password)
             user.setUser(data)

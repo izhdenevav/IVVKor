@@ -3,19 +3,17 @@ import styles from '../../css-modules/burgerMenu.module.css';
 import {observer} from "mobx-react-lite";
 import {Context} from "../../index";
 import {useNavigate} from "react-router-dom";
-import Cookies from "universal-cookie";
+import {logout} from "../../http/userAPI";
 
 const BurgerMenu = observer(({isActive, setActive}) => {
     const {user} = useContext(Context)
-
-    const cookies = new Cookies()
 
     let userPhoto = process.env.REACT_APP_API_URL + user._user.photo
 
     const navigate = useNavigate()
 
-    const signOut = async (e) => {
-        e.preventDefault()
+    const signOut = async () => {
+        await logout()
         user.setUser({})
         user.setIsAuth(false)
         navigate('/')

@@ -8,5 +8,8 @@ router.post('/registration', userController.registration) //регистраци
 router.post('/login', userController.login) //авторизация
 router.get('/auth', authMiddleware, userController.check) //аутентификация
 router.post('/redPhoto', userController.redUserPhoto) //меняем фото
+router.delete('/logout', userController.logout) //выходим
+
+
 
 module.exports = router

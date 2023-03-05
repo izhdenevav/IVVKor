@@ -4,6 +4,8 @@ const ApiError = require('../error/ApiError')
 const jwt = require('jsonwebtoken')
 const path = require('path')
 
+const TOKEN_COOKIE_NAME = 'token';
+
 const generateToken = (id, email, login, role, photo, dateBirth) => {
     return jwt.sign(
         {id, email, login, role, photo, dateBirth},
@@ -26,27 +28,61 @@ class UserController {
         const hashPassword = await bcrypt.hash(password, 5)
         const user = await User.create({email, login, password: hashPassword, role})
         const token = generateToken(user.id, user.email, user.login, user.role, user.photo, user.dateBirth)
-        return res.json({token})
+
+        res.cookie(TOKEN_COOKIE_NAME, token, {
+            maxAge: 24 * 60 * 60 * 1000,
+            secure: true,
+            path: '/'
+        });
+
+        res.end()
     }
 
-    async login(req, res, next) {
+    async login(req, res) {
         const {email, password} = req.body
         const user = await User.findOne({where: {email}})
         if (!user) {
-            return next(ApiError.badRequest('Такого пользователя не существует'))
+            return res.message('Такого пользователя не существует')
         }
         let comparePassword = bcrypt.compareSync(password, user.password)
-        console.log(req.body)
         if (!comparePassword) {
-            return next(ApiError.badRequest('Неправильный пароль'))
+            return res.message('Неправильный пароль')
         }
         const token = generateToken(user.id, user.email, user.login, user.role, user.photo, user.dateBirth)
-        return res.json({token})
+
+        console.log(token)
+
+        res.cookie(TOKEN_COOKIE_NAME, token, {
+            maxAge: 24 * 60 * 60 * 1000,
+            secure: true,
+            path: '/'
+        })
+
+        res.end()
+    }
+
+    async addUserCourse() {
+
+    }
+
+    async getUserCourse(req, res) {
+    }
+
+    async logout(req, res) {
+        res.clearCookie(TOKEN_COOKIE_NAME)
+        res.end()
     }
 
     async check(req, res) {
-        const token = generateToken(req.user.id, req.user.email, req.user.login, req.user.role, req.user.photo, req.user.dateBirth)
-        return res.json({token})
+        const token = generateToken(req.body)
+
+        res.cookie(TOKEN_COOKIE_NAME, token, {
+            maxAge: 24 * 60 * 60 * 1000,
+            secure: true,
+            path: '/'
+        });
+
+        res.end()
     }
 
     async redUserPhoto(req, res, next) {
