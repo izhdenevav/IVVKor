@@ -1,12 +1,11 @@
-import React, {useContext, useMemo, useState} from 'react';
-import {useNavigate} from "react-router-dom";
+import React from 'react';
 import styles from "../css-modules/home.module.css";
-import {Context} from "../index";
 import {observer} from "mobx-react-lite";
 import Quote from "../components/Quote";
 import Navbar from "../components/Navbar";
 
 const Home = observer(() => {
+
     return (
         <div>
             <Navbar/>

@@ -5,7 +5,6 @@ import {observer} from "mobx-react-lite";
 import Navbar from "../components/Navbar";
 import ViewCourse from "../components/ViewCourse";
 import {getUserCourses} from "../http/userAPI";
-import CourseStore from "../store/CourseStore";
 
 const toNormalDate = (date) => {
     let year = date.substr(0, 4)
@@ -16,14 +15,15 @@ const toNormalDate = (date) => {
 }
 
 const UserProfile = observer(() => {
-    const {user, userCourses} = useContext(Context)
-
-    const middle = new CourseStore()
+    const {user, userCourses, course} = useContext(Context)
 
     useEffect(() => {
-        getUserCourses(user._user.id).then(data => middle.setCourses(data))
+        getUserCourses(user._user.id).then(data => {
+            console.log(data)
+            userCourses.setCourses(data)
+            console.log(userCourses.courses)
 
-        console.log(middle.courses)
+        })
     }, [])
 
     let userPhoto = process.env.REACT_APP_API_URL + user._user.photo
@@ -40,8 +40,8 @@ const UserProfile = observer(() => {
                     <h1 className={ styles.text }>{toNormalDate(user._user.dateBirth)}</h1>
                 </div>
                 <div className={ styles.ulCourses }>
-                    <ul>
-{/*                        {userCourses.courses.map(userCourse => <ViewCourse key={userCourse.name} course={userCourse}></ViewCourse>)}*/}
+                    <ul>{/*
+                        {userCourses.courses.map(course => <ViewCourse key={course.name} course={course}></ViewCourse>)}*/}
                     </ul>
                 </div>
             </div>

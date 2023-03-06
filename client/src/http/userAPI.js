@@ -45,9 +45,7 @@ export const getUserCourses = async(id) => {
             }
         })
 
-    const middleData = await response.json()
-
-    return middleData
+    return response.json()
 }
 
 export const addUserCourse = async(userId, courseId) => {

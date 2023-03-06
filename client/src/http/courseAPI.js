@@ -6,6 +6,7 @@ export const getAllCourses = async () => {
                 "Content-Type": "application/json"
             }
         })
+
     return response.json()
 }
 

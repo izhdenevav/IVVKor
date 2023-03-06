@@ -19,7 +19,8 @@ const Course = observer(() => {
         findOneCourse(name).then(data => setCourse(data))
     }, [])
 
-/*    useEffect(() => {
+/*
+    useEffect(() => {
         if (user.user.id) {
             getUserCourses(user.user.id).then(data => {
                 for (let userCourse of data) {

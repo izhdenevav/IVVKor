@@ -9,8 +9,12 @@ import Navbar from "../components/Navbar";
 const Courses = observer(() => {
     const {course} = useContext(Context)
 
+
+
     useEffect(() => {
-        getAllCourses().then(data => course.setCourses(data))
+        getAllCourses().then(data => {
+            course.setCourses(data)
+        })
     }, [])
 
     return (
