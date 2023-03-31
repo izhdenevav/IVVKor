@@ -53,10 +53,14 @@ const Sign = observer(({active, setActive, isAuth, setAuth}) => {
 
     const signIn = async(values: FormValues) => {
             if (isAuth) {
-                let data = await login(values.email, values.password)
-                console.log(data)
-                user.setUser(data)
-                user.setIsAuth(true)
+                try {
+                    let data = await login(values.email, values.password)
+                    console.log(data)
+                    user.setUser(data)
+                    user.setIsAuth(true)
+                } catch (err) {
+                    alert(err.message)
+                }
             } else {
                 try {
                     console.log(values)
@@ -109,7 +113,7 @@ const Sign = observer(({active, setActive, isAuth, setAuth}) => {
                                 <Field name="password">
                                     {({input, meta}) => (
                                         <div className={ styles.inputDiv } >
-                                            <input type="text" className={ styles.inputSign } {...input} placeholder="Введите пароль..."/>
+                                            <input type="password" className={ styles.inputSign } {...input} placeholder="Введите пароль..."/>
                                             {meta.touched && meta.error && <div className={styles.error}>{meta.error}</div>}
                                         </div>
                                     )}

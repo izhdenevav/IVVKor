@@ -3,9 +3,16 @@ import Cookies from 'universal-cookie'
 
 const cookies = new Cookies()
 
+const errorHandler = async (response: Response) => {
+    if (response.status !== 200) {
+        const responseData = await response.json();
+        throw Error(responseData.message);
+    }
+};
+
 export const registration = async (email, login, password) => {
     console.log(email, login, password)
-    await fetch(`${process.env.REACT_APP_API_URL}`+'ivvkor/user/registration',
+    const response = await fetch(`${process.env.REACT_APP_API_URL}`+'ivvkor/user/registration',
         {
             method: 'POST',
             body: JSON.stringify({email, login, password}),
@@ -15,11 +22,13 @@ export const registration = async (email, login, password) => {
             }
         })
 
+    await errorHandler(response)
+
     return jwt_decode(cookies.get('token'))
 }
 
 export const login = async (email, password) => {
-    await fetch(`${process.env.REACT_APP_API_URL}`+'ivvkor/user/login',
+    const response = await fetch(`${process.env.REACT_APP_API_URL}`+'ivvkor/user/login',
         {
             method: 'POST',
             body: JSON.stringify({email, password}),
@@ -28,6 +37,8 @@ export const login = async (email, password) => {
                 'content-type': 'application/json'
             }
         })
+
+    await errorHandler(response)
 
     return jwt_decode(cookies.get('token'))
 }

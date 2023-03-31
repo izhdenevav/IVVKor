@@ -13,7 +13,14 @@ const cookies = require("cookie-parser");
 const PORT = process.env.PORT || 3000
 
 const app = express()
-app.use(cors({origin:'http://localhost:3000', credentials: true}))
+
+app.use(
+    cors({
+        origin: true,
+        credentials: true}
+    )
+)
+
 app.use(cookies());
 app.use(express.json())
 app.use(express.static(path.resolve(__dirname, 'static')))

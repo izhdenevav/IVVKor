@@ -38,16 +38,16 @@ class UserController {
         res.end()
     }
 
-    async login(req, res) {
+    async login(req, res, next) {
         const {email, password} = req.body
         const user = await User.findOne({where: {email}})
 
         if (!user) {
-            return res.message('Такого пользователя не существует')
+            return next(ApiError.badRequest("Такого пользователя не существует!"))
         }
         let comparePassword = bcrypt.compareSync(password, user.password)
         if (!comparePassword) {
-            return res.message('Неправильный пароль')
+            return next(ApiError.badRequest("Неправильный пароль!"))
         }
 
         const token = generateToken(user.id, user.email, user.login, user.role, user.photo, user.dateBirth)
