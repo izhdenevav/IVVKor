@@ -104,3 +104,10 @@
 
     color: #544E69;
 }
+
+.error {
+    font-size: 15px;
+    color: red;
+    font-family: "Montserrat Alternates";
+    margin-bottom: 10px;
+}

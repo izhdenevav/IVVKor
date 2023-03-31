@@ -4,11 +4,15 @@ import Cookies from 'universal-cookie'
 const cookies = new Cookies()
 
 export const registration = async (email, login, password) => {
+    console.log(email, login, password)
     await fetch(`${process.env.REACT_APP_API_URL}`+'ivvkor/user/registration',
         {
             method: 'POST',
             body: JSON.stringify({email, login, password}),
-            credentials: 'include'
+            credentials: 'include',
+            headers: {
+                'content-type': 'application/json'
+            }
         })
 
     return jwt_decode(cookies.get('token'))

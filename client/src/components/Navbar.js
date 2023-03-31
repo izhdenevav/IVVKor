@@ -2,9 +2,9 @@ import React, {useContext, useState} from 'react';
 import styles from '../css-modules/navbar.module.css';
 import {observer} from "mobx-react-lite";
 import {Context} from "../index";
-import Sign from "./ModalWindows/Sign";
 import {useNavigate} from "react-router-dom";
 import BurgerMenu from "./ModalWindows/BurgerMenu";
+import Sign from "./ModalWindows/Sign";
 
 const Navbar = observer(() => {
     const {user} = useContext(Context)
@@ -36,9 +36,9 @@ const Navbar = observer(() => {
     return (
         <div className={ styles.container }>
             <label onClick={ toHome } className={ styles.name }>IVVkor</label>
-            <button className={ styles.buttonToCourses } onClick={toCourses}>Курсы</button>
+            <button type="button" className={ styles.buttonToCourses } onClick={toCourses}>Курсы</button>
             <img onClick={() => setMenuActive(true) } className={ user._isAuth ? styles.userImg : styles.userImgInvisible } src={userPhoto}/>
-            <button className={ user._isAuth ? styles.buttonSignInInvisible : styles.buttonSignIn } onClick={toLogin}>Вход</button>
+            <button type="button" type="button" className={ user._isAuth ? styles.buttonSignInInvisible : styles.buttonSignIn } onClick={toLogin}>Вход</button>
             <BurgerMenu isActive={menuActive} setActive={setMenuActive}/>
             <Sign active={signActive} isAuth={isAuth} setActive={setSignActive} setAuth={setAuth}/>
         </div>
