@@ -49,6 +49,10 @@ const Navbar = observer(() => {
             <button type="button" className={ styles.buttonToNews } onClick={toNews}>Новости</button>
             <button type="button" className={ styles.buttonToCourses } onClick={toCourses}>Курсы</button>
             <button type="button" className={ styles.buttonToEducMat } onClick={toMaterials}>Учебные материалы</button>
+            <div className={ styles.search__div }>
+                <input type="text" className={ styles.search__input } placeholder="Введите текст для поиска..."/>
+                <button className={ styles.search__button }>🔎</button>
+            </div>
             <img onClick={() => setMenuActive(true) } className={ user.isAuth ? styles.userImg : styles.userImgInvisible } src={userPhoto}/>
             <button type="button" className={ user.isAuth ? styles.buttonSignInInvisible : styles.buttonSignIn } onClick={toLogin}>Вход</button>
             <BurgerMenu isActive={menuActive} setActive={setMenuActive}/>

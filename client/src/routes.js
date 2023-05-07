@@ -2,7 +2,7 @@ import Home from "./pages/Home";
 import Courses from "./pages/Courses";
 import Course from "./pages/Course"
 import UserProfile from "./pages/UserProfile";
-import RedactProfile from "./components/ModalWindows/RedactProfile";
+import Settings from "./pages/Settings";
 import AdminProfile from "./pages/AdminProfile";
 import Material from "./pages/Material"
 import News from "./pages/News";
@@ -14,7 +14,7 @@ export const authRoutes = [
     },
     {
         path: '/h',
-        Component: <RedactProfile/>
+        Component: <Settings/>
     },
     {
         path: '/admin',

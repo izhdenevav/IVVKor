@@ -1,0 +1,26 @@
+.container {
+    width: 450px;
+    height: auto;
+
+    align-items: center;
+    text-align: center;
+}
+
+.menu__div {
+    background: transparent;
+
+    border: 2px #756C93 solid;
+    border-radius: 20px;
+
+    padding: 5px;
+
+    margin: 10px;
+}
+
+.menu__button {
+    background: transparent;
+    border: none;
+
+    font-size: 20px;
+    font-family: "Montserrat Alternates";
+}

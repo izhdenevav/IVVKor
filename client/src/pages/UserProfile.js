@@ -22,13 +22,13 @@ const UserProfile = observer(() => {
     let userPhoto = process.env.REACT_APP_API_URL + user.user.photo
 
     useEffect(() => {
+        console.log(courses())
         setUserCourses(courses())
         console.log(userCourses)
     }, [])
 
     let courses = async () => {
         let data = await getUserCourses(user.user.id)
-
         return data
     }
 
@@ -43,9 +43,6 @@ const UserProfile = observer(() => {
                     </div>
                     <h1 className={ styles.text }>{user.user.login}</h1>
                     <h1 className={ styles.text }>{toNormalDate(user.user.dateBirth)}</h1>
-                    {/*<ul>*/}
-                    {/*    {userCourses.courses.map(course => <ViewCourse key={course.name} course={course}></ViewCourse>)}*/}
-                    {/*</ul>*/}
                 </div>
             </div>
         </div>

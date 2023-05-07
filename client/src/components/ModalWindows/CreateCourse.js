@@ -19,7 +19,10 @@ const CreateCourse = observer(({isActive, setActive}) => {
     const uploadImage = async() => {
         try {
             await createCourse(name, courseImage, description)
-            setActive(false);
+            setName("")
+            setDescription("")
+            setCourseImage(null)
+            setActive(false)
         } catch (err) {
             alert(err.message)
         }

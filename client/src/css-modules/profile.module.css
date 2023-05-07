@@ -36,15 +36,6 @@
     width: 150px;
     height: auto;
     text-align: center;
-    background-color: lightgray;
-}
-
-.navBar {
-    width: auto;
-    height: 45px;
-    background-color: lightgray;
-    padding: 5px;
-    text-align: right;
 }
 
 .redButton {
