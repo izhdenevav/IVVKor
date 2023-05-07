@@ -13,21 +13,9 @@
     src: local('SMontserrat Alternates'), local('Montserrat Alternates'), url(MontserratAlternates.ttf);
 }
 
-body {
-    margin: 0;
+.container {
+    justify-content: center;
 }
-
-.containerMain {
-    max-width: 90%;
-
-    margin: 0px auto;
-
-    text-align: center;
-
-/*    background: #A099B8;*/
-}
-
-
 
 .multiple-filters {
     backdrop-filter: blur(20px) saturate(120%) contrast(200%);

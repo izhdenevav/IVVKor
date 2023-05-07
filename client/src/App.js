@@ -5,14 +5,15 @@ import {Context} from "./index";
 import {check, getUserCourses} from "./http/userAPI";
 import {observer} from "mobx-react-lite";
 
+import "./App.css"
+
 const App = observer(() => {
-    const {user, userCourses} = useContext(Context)
+    const {user} = useContext(Context)
 
     useEffect(() => {
         check().then(data => {
             user.setUser(data)
             user.setIsAuth(true)
-            user.user.id ? userCourses.setCourses(getUserCourses(user.user.id)) : userCourses.setCourses([])
         })
     }, [])
 

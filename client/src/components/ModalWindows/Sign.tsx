@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import styles from '../../css-modules/signModal.module.css'
 import {login, registration} from '../../http/userAPI'
 import {Context} from "../../index";
@@ -6,6 +6,8 @@ import {observer} from "mobx-react-lite";
 import {useNavigate} from "react-router-dom";
 import { Form, Field } from 'react-final-form';
 import {ValidationErrors} from "final-form";
+import { ToastContainer, toast } from 'react-toastify';
+import CustomAlert from "../ModalWindows/CustomAlert.js"
 
 type FormValues = {
     email: string;
@@ -52,30 +54,30 @@ const Sign = observer(({active, setActive, isAuth, setAuth}) => {
     }
 
     const signIn = async(values: FormValues) => {
-            if (isAuth) {
-                try {
-                    let data = await login(values.email, values.password)
-                    console.log(data)
-                    user.setUser(data)
-                    user.setIsAuth(true)
-                } catch (err) {
-                    alert(err.message)
-                }
-            } else {
-                try {
-                    console.log(values)
-                    let data = await registration(values.email, values.login, values.password)
-                    user.setUser(data)
-                    user.setIsAuth(true)
-                } catch (err) {
-                    alert(err.message)
-                }
+        if (isAuth) {
+            try {
+                let data = await login(values.email, values.password)
+                user.setUser(data)
+                user.setIsAuth(true)
+            } catch (err) {
+                alert(err.message)
             }
-            navigate("/profile")
+        } else {
+            try {
+                await registration(values.email, values.login, values.password)
+                setActive(false)
+            } catch (err) {
+                alert(err.message)
+            }
+        }
+        if (user.user.role === 'ADMIN') {
+            navigate('/admin')
+        } else {
+            navigate('/profile')
+        }
     }
 
     const handleSubmit = (e) => {
-        console.log(e)
         signIn(e)
     };
 

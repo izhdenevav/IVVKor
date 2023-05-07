@@ -7,14 +7,55 @@
     height: auto;
 }
 
+.h1Img {
+    width: auto;
+    height: auto;
+
+    text-align: center;
+}
+
+.dcrpBtn {
+    width: auto;
+    height: auto;
+
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
 .buttonAdd {
     width: 100px;
     height: 30px;
     margin-top: 10px;
+
+    background: transparent;
+    border: #313F94;
+
+    font-family: "Montserrat Alternates";
+    font-size: 20px;
+    color: #313F94;
 }
 
 .buttonAdd__invisible {
     composes: buttonAdd;
 
     display: none;
+}
+
+.name {
+    font-family: "Montserrat Alternates";
+
+    font-size: 25px;
+}
+
+.description {
+    font-size: 20px;
+    font-family: "Montserrat Alternates";
+
+    width: 700px;
+    height: auto;
+}
+
+.courseHeader {
+    display: flex;
+    margin-left: 30px;
 }

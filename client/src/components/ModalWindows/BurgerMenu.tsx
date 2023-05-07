@@ -8,7 +8,7 @@ import {logout} from "../../http/userAPI";
 const BurgerMenu = observer(({isActive, setActive}) => {
     const {user} = useContext(Context)
 
-    let userPhoto = process.env.REACT_APP_API_URL + user._user.photo
+    let userPhoto = process.env.REACT_APP_API_URL + user.user.photo
 
     const navigate = useNavigate()
 
@@ -22,7 +22,11 @@ const BurgerMenu = observer(({isActive, setActive}) => {
 
     const toProfile = (e) => {
         e.preventDefault()
-        navigate('/profile')
+        if (user.user.role === 'ADMIN') {
+            navigate('/admin')
+        } else {
+            navigate('/profile')
+        }
     }
 
     const toRedactProfile = (e) => {
@@ -34,7 +38,7 @@ const BurgerMenu = observer(({isActive, setActive}) => {
         <div onClick={() => setActive(false)} className={ isActive ? styles.active : styles.menu }>
             <div className={ isActive ? styles.menu__contentActive : styles.menu__content } >
                 <div className={ styles.divUser }>
-                    <label className={ styles.loginUser }>{user._user.login}</label>
+                    <label className={ styles.loginUser }>{user.user.login}</label>
                     <img className={ styles.imgUser } src={userPhoto}/>
                 </div>
                 <div className={ styles.divItem }>

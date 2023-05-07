@@ -16,36 +16,51 @@ const Course = observer(() => {
     const {name} = useParams()
 
     useEffect(() => {
-        findOneCourse(name).then(data => setCourse(data))
+        getCourse()
     }, [])
 
-/*
+    let getCourse = async () => {
+        let data = await findOneCourse(name)
+        setCourse(data)
+    }
+
     useEffect(() => {
         if (user.user.id) {
-            getUserCourses(user.user.id).then(data => {
-                for (let userCourse of data) {
-                    if (userCourse.name === course.name) {
-                        setAdded(true)
-                    }
-                }
-            })
+            checkIsAdded()
         }
-    }, [])*/
+    }, [])
+
+    let checkIsAdded = async () => {
+        let data = await getUserCourses(user.user.id)
+        for (let userCourse of data) {
+            if (userCourse.name === name) {
+                setAdded(true)
+            }
+        }
+    }
 
     const addCourse = async(e) => {
         e.preventDefault()
         await addUserCourse(user.user.id, course.id)
+        setAdded(true)
     }
 
     return (
         <div>
             <Navbar/>
             <div className={ styles.coursePage }>
-                <div>
-                    <h1>{course.name}</h1>
-                    <img className={ styles.imgCourse } src={process.env.REACT_APP_API_URL + course.image}></img>
+                <div className={ styles.courseHeader }>
+                    <div className={ styles.h1Img }>
+                        <h1 className={ styles.name }>{course.name}</h1>
+                        <img className={ styles.imgCourse } src={process.env.REACT_APP_API_URL + course.image}></img>
+                    </div>
+                    <div className={ styles.dcrpBtn }>
+                        <div>
+                            <label className={ styles.description }>{course.description}</label>
+                        </div>
+                        <button onClick={ addCourse } className={ user.isAuth && user.user.role !== "ADMIN" && !isAdded ? styles.buttonAdd : styles.buttonAdd__invisible }>Пройти</button>
+                    </div>
                 </div>
-                <button onClick={ addCourse } className={ user.isAuth ? styles.buttonAdd : styles.buttonAdd__invisible }>Пройти</button>
             </div>
         </div>
     );

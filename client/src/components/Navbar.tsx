@@ -20,6 +20,11 @@ const Navbar = observer(() => {
         navigate('/courses')
     }
 
+    const toMaterials = (e) => {
+        e.preventDefault()
+        navigate('/material')
+    }
+
     const toLogin = (e) => {
         e.preventDefault()
         setAuth(true)
@@ -31,14 +36,21 @@ const Navbar = observer(() => {
         navigate('/')
     }
 
-    let userPhoto = process.env.REACT_APP_API_URL + user._user.photo
+    const toNews = (e) => {
+        e.preventDefault()
+        navigate('/news')
+    }
+
+    let userPhoto = process.env.REACT_APP_API_URL + user.user.photo
 
     return (
         <div className={ styles.container }>
             <label onClick={ toHome } className={ styles.name }>IVVkor</label>
+            <button type="button" className={ styles.buttonToNews } onClick={toNews}>Новости</button>
             <button type="button" className={ styles.buttonToCourses } onClick={toCourses}>Курсы</button>
-            <img onClick={() => setMenuActive(true) } className={ user._isAuth ? styles.userImg : styles.userImgInvisible } src={userPhoto}/>
-            <button type="button" type="button" className={ user._isAuth ? styles.buttonSignInInvisible : styles.buttonSignIn } onClick={toLogin}>Вход</button>
+            <button type="button" className={ styles.buttonToEducMat } onClick={toMaterials}>Учебные материалы</button>
+            <img onClick={() => setMenuActive(true) } className={ user.isAuth ? styles.userImg : styles.userImgInvisible } src={userPhoto}/>
+            <button type="button" className={ user.isAuth ? styles.buttonSignInInvisible : styles.buttonSignIn } onClick={toLogin}>Вход</button>
             <BurgerMenu isActive={menuActive} setActive={setMenuActive}/>
             <Sign active={signActive} isAuth={isAuth} setActive={setSignActive} setAuth={setAuth}/>
         </div>

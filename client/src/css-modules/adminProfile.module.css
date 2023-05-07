@@ -1,0 +1,49 @@
+.container {
+    text-align: center;
+}
+
+.page {
+    display: inline-block;
+
+    width: 100%;
+
+    padding-top: 10px;
+}
+
+.greeting {
+    font-size: 25px;
+    font-family: "Montserrat Alternates";
+
+    color: #544E69;
+}
+
+.button__container {
+    margin-top: 10px;
+
+    list-style-type: none;
+
+    width: 20%;
+
+    margin-left: 10px;
+
+    border: solid #756C93 1px;
+}
+
+.button {
+    font-family: "Montserrat Alternates";
+
+    color: #544E69;
+
+    background: transparent;
+
+    width: 70%;
+    height: auto;
+
+    border: solid #544E69 1px;
+    border-radius: 20px;
+
+    margin-bottom: 10px;
+    margin-top: 10px;
+    position: relative;
+    left: -20px;
+}

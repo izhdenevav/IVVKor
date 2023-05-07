@@ -3,12 +3,14 @@ const {User, UserCourse, Course} = require('../models/models')
 const ApiError = require('../error/ApiError')
 const jwt = require('jsonwebtoken')
 const path = require('path')
+const uuid = require('uuid')
+const mailService = require('../service/mailService')
 
 const TOKEN_COOKIE_NAME = 'token';
 
-const generateToken = (id, email, login, role, photo, dateBirth) => {
+const generateToken = (id, email, login, role, photo, dateBirth, isActivated, isBlocked) => {
     return jwt.sign(
-        {id, email, login, role, photo, dateBirth},
+        {id, email, login, role, photo, dateBirth, isActivated, isBlocked},
         process.env.SECRET_KEY,
         {expiresIn: '24h'}
     )
@@ -26,8 +28,14 @@ class UserController {
             return next(ApiError.busy('Эта электронная почта занята/Этот логин занят'))
         }
         const hashPassword = await bcrypt.hash(password, 5)
-        const user = await User.create({email, login, password: hashPassword, role})
-        const token = generateToken(user.id, user.email, user.login, user.role, user.photo, user.dateBirth)
+        const activationLink = uuid.v4()
+
+
+        const user = await User.create({email, login, password: hashPassword, role, activationLink})
+        await mailService.sendActivationMail(email, `${process.env.API_URL}/ivvkor/user/activate/${activationLink}`)
+
+
+        const token = generateToken(user.id, user.email, user.login, user.role, user.photo, user.dateBirth, user.isActivated, user.isBlocked)
 
         res.cookie(TOKEN_COOKIE_NAME, token, {
             maxAge: 24 * 60 * 60 * 1000,
@@ -36,6 +44,24 @@ class UserController {
         });
 
         res.end()
+    }
+
+    async activate(req, res, next) {
+        try {
+            const activationLink = req.params.link
+            const user = await User.findOne({where: {activationLink}})
+            if (!user) {
+                return next(ApiError.badRequest("Некорректная ссылка активации"))
+            }
+
+            user.isActivated = true
+
+            await user.save()
+
+            return res.redirect(process.env.CLIENT_URL)
+        } catch (err) {
+            console.log(err.message)
+        }
     }
 
     async login(req, res, next) {
@@ -50,7 +76,7 @@ class UserController {
             return next(ApiError.badRequest("Неправильный пароль!"))
         }
 
-        const token = generateToken(user.id, user.email, user.login, user.role, user.photo, user.dateBirth)
+        const token = generateToken(user.id, user.email, user.login, user.role, user.photo, user.dateBirth, user.isActivated, user.isBlocked)
 
         res.cookie(TOKEN_COOKIE_NAME, token, {
             maxAge: 24 * 60 * 60 * 1000,
@@ -86,7 +112,7 @@ class UserController {
     }
 
     async check(req, res) {
-        return res.json(true)
+        return res.json()
     }
 
     async redUserPhoto(req, res, next) {

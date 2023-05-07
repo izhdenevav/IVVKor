@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {Context} from "../index";
 import styles from "../css-modules/profile.module.css"
 import {observer} from "mobx-react-lite";
@@ -15,34 +15,37 @@ const toNormalDate = (date) => {
 }
 
 const UserProfile = observer(() => {
-    const {user, userCourses, course} = useContext(Context)
+    const {user} = useContext(Context)
+
+    const [userCourses, setUserCourses] = useState([])
+
+    let userPhoto = process.env.REACT_APP_API_URL + user.user.photo
 
     useEffect(() => {
-        getUserCourses(user._user.id).then(data => {
-            console.log(data)
-            userCourses.setCourses(data)
-            console.log(userCourses.courses)
-
-        })
+        setUserCourses(courses())
+        console.log(userCourses)
     }, [])
 
-    let userPhoto = process.env.REACT_APP_API_URL + user._user.photo
+    let courses = async () => {
+        let data = await getUserCourses(user.user.id)
+
+        return data
+    }
 
     return (
         <div>
             <Navbar/>
             <div  className={ styles.profile }>
+                <label className={ user.user.isActivated ? styles.userIsActivatedInvisible : styles.userIsActivated}>Ваша почта не подтверждена, перейдите по ссылке в письме!</label>
                 <div className={ styles.divUserInfo }>
                     <div className={ styles.divPhoto }>
                         <img className={ styles.userPhoto } src={userPhoto}></img>
                     </div>
-                    <h1 className={ styles.text }>{user._user.login}</h1>
-                    <h1 className={ styles.text }>{toNormalDate(user._user.dateBirth)}</h1>
-                </div>
-                <div className={ styles.ulCourses }>
-                    <ul>{/*
-                        {userCourses.courses.map(course => <ViewCourse key={course.name} course={course}></ViewCourse>)}*/}
-                    </ul>
+                    <h1 className={ styles.text }>{user.user.login}</h1>
+                    <h1 className={ styles.text }>{toNormalDate(user.user.dateBirth)}</h1>
+                    {/*<ul>*/}
+                    {/*    {userCourses.courses.map(course => <ViewCourse key={course.name} course={course}></ViewCourse>)}*/}
+                    {/*</ul>*/}
                 </div>
             </div>
         </div>

@@ -2,7 +2,7 @@
     width: auto;
     height: auto;
 
-    background: transparent;
+    background: white;
     box-shadow: 0px 5px 15px gray;
 
     padding: 10px;
@@ -24,16 +24,44 @@
     background: transparent;
     border: transparent;
 
-    margin: 0px 10px;
+    margin-right: 10px;
+}
+
+.buttonToEducMat {
+    font-family: "Montserrat Alternates";
+    font-size: 20px;
+    color: #313F94;
+
+    max-width: 150px;
+    width: auto;
+
+    text-align: center;
+
+    background: transparent;
+    border: transparent;
+
+    margin-right: 10px;
+}
+
+.buttonToNews {
+    font-family: "Montserrat Alternates";
+    font-size: 25px;
+    color: #313F94;
+
+    background: transparent;
+    border: transparent;
+
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .userImg {
     position: fixed;
-    right: 10px;
+    right: 0px;
+    margin-right: 20px;
 
     width: 40px;
     height: 40px;
-    object-fit: cover;
 }
 
 .userImgInvisible {
