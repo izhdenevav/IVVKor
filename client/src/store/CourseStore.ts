@@ -1,15 +1,8 @@
 import {makeAutoObservable} from "mobx";
 
 export default class CourseStore {
-
-    courses: []
-
-    constructor() {
+    constructor(private courses: [] = []) {
         this.courses = []
         makeAutoObservable(this)
-    }
-
-    setCourses(courses) {
-        this.courses = courses
     }
 }

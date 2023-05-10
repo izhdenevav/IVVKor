@@ -6,7 +6,8 @@ import CourseStore from "./store/CourseStore";
 
 export const Context = createContext(null) as any
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+
 root.render(
         <Context.Provider value={{
             user: new UserStore(),

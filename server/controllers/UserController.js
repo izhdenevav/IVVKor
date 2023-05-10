@@ -98,12 +98,12 @@ class UserController {
     async getUserCourses(req, res) {
         const {id} = req.body
 
-        const user = await User.findOne({
+        const courses = await User.findOne({
             where: {id},
             include: Course
         })
 
-        return res.json(user.courses)
+        return res.json(courses)
     }
 
     async logout(req, res) {
@@ -115,7 +115,7 @@ class UserController {
         return res.json()
     }
 
-    async redUserPhoto(req, res, next) {
+    async updateUserPhoto(req, res, next) {
         try {
             let {email, login} = req.body
             const {photo} = req.files
@@ -124,10 +124,46 @@ class UserController {
 
             const user = await User.update({photo: login + ".png"}, {where: {email: email}})
 
-            return res.json(user)
+            const token = generateToken(user.id, user.email, user.login, user.role, user.photo, user.dateBirth, user.isActivated, user.isBlocked)
+
+            res.cookie(TOKEN_COOKIE_NAME, token, {
+                maxAge: 24 * 60 * 60 * 1000,
+                secure: true,
+                path: '/'
+            })
+
+            res.end()
         } catch(e) {
             next(ApiError.badRequest(e.message))
         }
+    }
+
+    async updatePassword(req, res, next) {
+        let {email, oldPassword, newPassword} = req.body
+
+        let user = await User.findOne({where: {email}})
+
+        if (!bcrypt.compareSync(oldPassword, user.password)) {
+            return next(ApiError.badRequest("Неправильный пароль!"))
+        }
+
+        await User.update({password: newPassword}, {where: {email: email}})
+
+        res.end()
+    }
+
+    async deleteAccount(req, res) {
+        const {email} = req.body
+
+        // const user = await User.findOne({where: {email: email}})
+
+        // if (!bcrypt.compareSync(password, user.password)) {
+        //
+        // }
+
+        await User.destroy({where: {email: email}})
+
+        res.end()
     }
 }
 

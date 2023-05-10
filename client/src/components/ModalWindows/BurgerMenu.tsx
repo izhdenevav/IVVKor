@@ -15,8 +15,8 @@ const BurgerMenu = observer(({isActive, setActive}) => {
     const signOut = async (e) => {
         e.preventDefault()
         await logout()
-        user.setUser({})
-        user.setIsAuth(false)
+        user.user = []
+        user.isAuth = false
         navigate('/')
     }
 

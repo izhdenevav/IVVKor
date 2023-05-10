@@ -1,3 +1,4 @@
+import React from "react";
 import Home from "./pages/Home";
 import Courses from "./pages/Courses";
 import Course from "./pages/Course"

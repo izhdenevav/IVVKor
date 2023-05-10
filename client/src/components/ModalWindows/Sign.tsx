@@ -6,8 +6,6 @@ import {observer} from "mobx-react-lite";
 import {useNavigate} from "react-router-dom";
 import { Form, Field } from 'react-final-form';
 import {ValidationErrors} from "final-form";
-import { ToastContainer, toast } from 'react-toastify';
-import CustomAlert from "../ModalWindows/CustomAlert.js"
 
 type FormValues = {
     email: string;
@@ -38,11 +36,11 @@ const Sign = observer(({active, setActive, isAuth, setAuth}) => {
         }
 
         if (!/^([a-z0-9]{6,20})$/.test(values?.password as string)) {
-            errors.password = "Пароль должен содержать от 6 до 20 символов и содержать буквы латинского алфавита разного регистра и цифры.";
+            errors.password = "Пароль должен содержать от 6 до 20 символов и содержать буквы латинского алфавита разного регистра и цифры."
         }
 
         if (!values?.password) {
-            errors.password = "Пароль не может быть пустым.";
+            errors.password = "Пароль не может быть пустым."
         }
 
         return errors;
@@ -57,16 +55,19 @@ const Sign = observer(({active, setActive, isAuth, setAuth}) => {
         if (isAuth) {
             try {
                 let data = await login(values.email, values.password)
-                user.setUser(data)
-                user.setIsAuth(true)
-            } catch (err) {
+                user.user = data
+                user.isAuth = true
+                user.isActivated = user.user.isActivated
+            } catch (err: any) {
                 alert(err.message)
             }
         } else {
             try {
-                await registration(values.email, values.login, values.password)
-                setActive(false)
-            } catch (err) {
+                let data = await registration(values.email, values.login, values.password)
+                user.user = data
+                user.isAuth = true
+                user.isActivated = false
+            } catch (err: any) {
                 alert(err.message)
             }
         }

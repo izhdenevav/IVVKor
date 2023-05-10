@@ -11,10 +11,13 @@ const App = observer(() => {
     const {user} = useContext(Context)
 
     useEffect(() => {
-        check().then(data => {
-            user.setUser(data)
-            user.setIsAuth(true)
-        })
+        async function getUser() {
+            let data = await check()
+            user.user = data
+            user.isAuth = true
+        }
+
+        getUser()
     }, [])
 
     return (

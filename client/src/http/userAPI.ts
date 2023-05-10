@@ -10,7 +10,7 @@ const errorHandler = async (response: Response) => {
     }
 };
 
-export const registration = async (email, login, password) => {
+export const registration = async (email: string, login: string, password: string) => {
     console.log(email, login, password)
     const response = await fetch(`${process.env.REACT_APP_API_URL}`+'ivvkor/user/registration',
         {
@@ -27,7 +27,7 @@ export const registration = async (email, login, password) => {
     return jwt_decode(cookies.get('token'))
 }
 
-export const login = async (email, password) => {
+export const login = async (email: string, password: string) => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}`+'ivvkor/user/login',
         {
             method: 'POST',
@@ -50,7 +50,7 @@ export const logout = async() => {
     })
 }
 
-export const getUserCourses = async(id) => {
+export const getUserCourses = async(id: number) => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}`+'ivvkor/user/getUserCourses',
         {
             method: 'POST',
@@ -63,7 +63,7 @@ export const getUserCourses = async(id) => {
     return response.json()
 }
 
-export const addUserCourse = async(userId, courseId) => {
+export const addUserCourse = async(userId: number, courseId: number) => {
     await fetch(`${process.env.REACT_APP_API_URL}`+'ivvkor/user/addUserCourse',
         {
             method: 'POST',
@@ -83,5 +83,29 @@ export const check = async() => {
     })
 
     return jwt_decode(cookies.get('token'))
+}
+
+export const updatePassword = async(email: string, oldPassword: string, newPassword: string) => {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}`+'ivvkor/user/updatePassword', {
+        method: 'POST',
+        body: JSON.stringify({email, oldPassword, newPassword}),
+        credentials: 'include',
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+
+    await errorHandler(response)
+}
+
+export const deleteAccount = async(email: string) => {
+    await fetch(`${process.env.REACT_APP_API_URL}`+'ivvkor/user/deleteAccount', {
+        method: 'DELETE',
+        body: JSON.stringify({email}),
+        credentials: 'include',
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
 }
 

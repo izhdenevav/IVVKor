@@ -11,7 +11,7 @@ const Courses = observer(() => {
 
     useEffect(() => {
         getAllCourses().then(data => {
-            course.setCourses(data)
+            course.courses = data
         })
     }, [])
 

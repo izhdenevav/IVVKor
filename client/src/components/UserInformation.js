@@ -14,6 +14,8 @@ const UserInformation = () => {
 
     let userPhoto = process.env.REACT_APP_API_URL + user.user.photo
 
+
+
     return (
         <div className={ styles.main__container }>
             <div className={ styles.profile_information__container }>

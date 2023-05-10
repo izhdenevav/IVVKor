@@ -3,3 +3,8 @@
 /server/.env
 
 /client/config/
+/.idea/.name
+/client/public/env.js
+.gitignore
+/client/.env
+/server/static
