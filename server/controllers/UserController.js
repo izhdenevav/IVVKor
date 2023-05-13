@@ -49,14 +49,24 @@ class UserController {
     async activate(req, res, next) {
         try {
             const activationLink = req.params.link
-            const user = await User.findOne({where: {activationLink}})
+            let user = await User.findOne({where: {activationLink}})
             if (!user) {
                 return next(ApiError.badRequest("Некорректная ссылка активации"))
             }
 
-            user.isActivated = true
+            const email = user.email
 
-            await user.save()
+            await User.update({isActivated: true}, {where: {email: email}})
+
+            user = await User.findOne({where: {email}})
+
+            const token = generateToken(user.id, user.email, user.login, user.role, user.photo, user.dateBirth, user.isActivated, user.isBlocked)
+
+            res.cookie(TOKEN_COOKIE_NAME, token, {
+                maxAge: 24 * 60 * 60 * 1000,
+                secure: true,
+                path: '/'
+            });
 
             return res.redirect(process.env.CLIENT_URL)
         } catch (err) {
@@ -115,14 +125,19 @@ class UserController {
         return res.json()
     }
 
-    async updateUserPhoto(req, res, next) {
+    async updateUserInfo(req, res, next) {
         try {
-            let {email, login} = req.body
+            let {email, login, dateBirth} = req.body
+
             const {photo} = req.files
+
             let fileName = login + ".png"
+
             await photo.mv(path.resolve(__dirname, '..', 'static', fileName))
 
-            const user = await User.update({photo: login + ".png"}, {where: {email: email}})
+            await User.update({photo: login + ".png", login: login, dateBirth: dateBirth}, {where: {email: email}})
+
+            let user = User.findOne({where: {email: email}})
 
             const token = generateToken(user.id, user.email, user.login, user.role, user.photo, user.dateBirth, user.isActivated, user.isBlocked)
 
@@ -148,6 +163,28 @@ class UserController {
         }
 
         await User.update({password: newPassword}, {where: {email: email}})
+
+        res.end()
+    }
+
+    async updateEmail(req, res) {
+        let {id, email} = req.body
+
+        const activationLink = uuid.v4()
+
+        await User.update({email: email, activationLink: activationLink}, {where: {id: id}})
+
+        await mailService.sendActivationMail(email, `${process.env.API_URL}/ivvkor/user/activate/${activationLink}`)
+
+        const user = User.findOne({where: {email}})
+
+        const token = generateToken(user.id, user.email, user.login, user.role, user.photo, user.dateBirth, user.isActivated, user.isBlocked)
+
+        res.cookie(TOKEN_COOKIE_NAME, token, {
+            maxAge: 24 * 60 * 60 * 1000,
+            secure: true,
+            path: '/'
+        })
 
         res.end()
     }

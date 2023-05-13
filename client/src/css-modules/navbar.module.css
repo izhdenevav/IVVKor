@@ -13,12 +13,12 @@
 
 .name {
     font-family: "Montserrat Alternates";
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .buttonToCourses {
     font-family: "Montserrat Alternates";
-    font-size: 25px;
+    font-size: 20px;
     color: #313F94;
 
     background: transparent;
@@ -29,7 +29,7 @@
 
 .buttonToEducMat {
     font-family: "Montserrat Alternates";
-    font-size: 20px;
+    font-size: 18px;
     color: #313F94;
 
     max-width: 150px;
@@ -45,7 +45,7 @@
 
 .buttonToNews {
     font-family: "Montserrat Alternates";
-    font-size: 25px;
+    font-size: 20px;
     color: #313F94;
 
     background: transparent;
@@ -75,7 +75,7 @@
     right: 0px;
 
     font-family: "Montserrat Alternates";
-    font-size: 25px;
+    font-size: 20px;
     color: #313F94;
 
     background: transparent;
@@ -91,7 +91,7 @@
 }
 
 .search__div {
-    width: 545px;
+    width: 395px;
     height: auto;
 
     margin-left: 20px;
@@ -106,10 +106,10 @@
 }
 
 .search__input {
-    width: 500px;
+    width: 350px;
     height: auto;
 
-    font-size: 20px;
+    font-size: 17px;
     font-family: "Montserrat Alternates";
 
     padding: 10px;
@@ -126,5 +126,5 @@
     background: transparent;
     border: none;
 
-    font-size: 25px;
+    font-size: 20px;
 }

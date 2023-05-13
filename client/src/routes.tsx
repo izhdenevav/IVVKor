@@ -10,7 +10,7 @@ import News from "./pages/News";
 
 export const authRoutes = [
     {
-        path: '/profile',
+        path: '/profile/:login',
         Component: <UserProfile/>
     },
     {

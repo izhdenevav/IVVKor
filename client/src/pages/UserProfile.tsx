@@ -17,20 +17,20 @@ const toNormalDate = (date) => {
 const UserProfile = observer(() => {
     const {user} = useContext(Context)
 
-    const [userCourses, setUserCourses] = useState([])
+    // const [userCourses, setUserCourses] = useState([])
 
     let userPhoto = process.env.REACT_APP_API_URL + user.user.photo
 
-    useEffect(() => {
-        console.log(courses())
-        setUserCourses(courses())
-        console.log(userCourses)
-    }, [])
+    // useEffect(() => {
+    //     console.log(courses())
+    //     setUserCourses(courses())
+    //     console.log(userCourses)
+    // }, [])
 
-    let courses = async () => {
-        let data = await getUserCourses(user.user.id)
-        return data
-    }
+    // let courses = async () => {
+    //     let data = await getUserCourses(user.user.id)
+    //     return data
+    // }
 
     return (
         <div>

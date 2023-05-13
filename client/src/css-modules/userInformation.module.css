@@ -1,49 +1,116 @@
 .main__container {
-    margin: 10px;
-    padding: 10px;
-
-    width: 1300px;
+    width: auto;
+    height: auto;
 
     border: 2px solid #756C93;
     border-radius: 20px;
+
+    padding: 20px;
+
+    text-align: center;
 }
 
 .profile_information__container {
-    width: 500px;
+    border: 2px solid #756C93;
+    border-radius: 20px;
 
+    padding: 20px;
 }
 
 .button {
+    width: auto;
+    height: auto;
+
+    font-size: 20px;
+    font-family: "Montserrat Alternates";
+
     background: transparent;
 
-    font-family: "Montserrat Alternates";
-    font-size: 20px;
-
-    border: #756C93 2px solid;
+    border: 2px solid #756C93;
     border-radius: 20px;
 
-    height: auto;
-    width: 400px;
-}
-
-.button__container {
-    background: transparent;
-
-    display: inline-block;
-    text-align: center;
-
-    width: 400px;
-    height: auto;
-
+    padding: 7px;
     margin: 10px;
 }
 
+.button__container {
+    width: auto;
+    height: auto;
+
+    text-align: center;
+}
+
 .text {
-    font-family: "Montserrat Alternates";
     font-size: 20px;
+    font-family: "Montserrat Alternates";
+}
+
+.input__container {
+    width: auto;
+    height: auto;
+
+    display: flex;
+}
+
+.input {
+    font-size: 20px;
+    font-family: "Montserrat Alternates";
+
+    background: transparent;
+
+    border: 2px solid #756C93;
+    border-radius: 20px;
+
+    padding: 7px;
+    margin: 10px;
+}
+
+.img__container {
+    width: auto;
+    height: auto;
+
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
 }
 
 .img {
     width: 200px;
     height: auto;
+}
+
+.error {
+    font-size: 15px;
+    color: red;
+    font-family: "Montserrat Alternates";
+    margin-bottom: 10px;
+}
+
+.input__file {
+    background: transparent;
+}
+
+.file__upload {
+    text-align: center;
+    border: 3px dashed #756C93;
+    margin-top: 5px;
+    padding: 5px;
+    position: relative;
+    cursor: pointer;
+}
+
+.file__upload input {
+    display: block;
+    height: auto;
+    width: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    cursor: pointer;
 }

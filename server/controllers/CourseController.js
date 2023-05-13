@@ -26,6 +26,7 @@ class CourseController {
         await courseImage.mv(path.resolve(__dirname, '..', 'static', image))
 
         const course = await Course.create({name, image, description})
+
         return res.json(course)
     }
 

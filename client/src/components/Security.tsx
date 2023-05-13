@@ -9,6 +9,7 @@ import { Form, Field } from 'react-final-form';
 type FormValues = {
     password: string;
     repeatedPassword: string;
+    email: string;
 };
 
 const Security = () => {
@@ -19,6 +20,14 @@ const Security = () => {
 
     const isValid = (values: FormValues): ValidationErrors => {
         const errors: ValidationErrors = {}
+
+        if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(values?.email as string)) {
+            errors.email = "Неверный формат почты."
+        }
+
+        if (!values?.email) {
+            errors.email = "Почта не может быть пустой."
+        }
 
         if (!/^([a-z0-9]{6,20})$/.test(values?.password as string)) {
             errors.password = "Пароль должен содержать от 6 до 20 символов и содержать буквы латинского алфавита разного регистра и цифры."
@@ -41,12 +50,16 @@ const Security = () => {
 
     const update = async(values: FormValues) => {
         try {
-            await updatePassword(user.user.email, oldPassword, values.password)
-            setResult("Вы успешно сменили пароль!")
-            setOldPassword("")
-            setResult("")
-            values.password = ""
-            values.repeatedPassword = ""
+            if (!oldPassword || !values.password ) {
+
+            } else {
+                await updatePassword(user.user.email, oldPassword, values.password)
+                setResult("Вы успешно сменили пароль!")
+                setOldPassword("")
+                setResult("")
+                values.password = ""
+                values.repeatedPassword = ""
+            }
         } catch (err) {
             setResult(err.message)
         }
@@ -100,7 +113,21 @@ const Security = () => {
                             </Field>
                         </div>
                         <label className={ styles.error }>{result}</label>
-                        <button type="submit" className={ styles.new_password__button }>Изменить пароль</button>
+                        <button type="submit" className={ styles.new_password__button }>Сохранить</button>
+                    </div>
+                    <div className={ styles.email__div }>
+                        <label className={ styles.email__label }>Изменить почту: </label>
+                        <div>
+                            <Field name="email" initialValue={user.user.email}>
+                                {({input, meta}) => (
+                                    <div>
+                                        <input type="text" className={ styles.email__input } {...input}/>
+                                        {meta.touched && meta.error && <div className={styles.error}>{meta.error}</div>}
+                                    </div>
+                                )}
+                            </Field>
+                        </div>
+                        <button type="button" className={ styles.email__button }>Сохранить</button>
                     </div>
                     <div>
                         <button onClick={deleteAcc} className={ styles.new_password__button }>Удалить профиль</button>

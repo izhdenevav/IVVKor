@@ -98,6 +98,46 @@ export const updatePassword = async(email: string, oldPassword: string, newPassw
     await errorHandler(response)
 }
 
+export const updatePassword = async(email: string, oldPassword: string, newPassword: string) => {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}`+'ivvkor/user/updatePassword', {
+        method: 'POST',
+        body: JSON.stringify({email, oldPassword, newPassword}),
+        credentials: 'include',
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+
+    await errorHandler(response)
+}
+
+
+const toNormalDate = (date) => {
+    let year = date.substr(0, 2)
+    let month = date.substr(3, 2)
+    let day = date.substr(6, 4)
+
+    return year + "-" + month + "-" + day
+}
+
+export const updateUserInfo = async(email: string, login: string, dateBirth: string, photo) => {
+    let formData = new FormData()
+    formData.append("email", email)
+    formData.append("login", login)
+    formData.append("dateBirth", toNormalDate(dateBirth))
+    formData.append("photo", photo)
+
+    const response = await fetch(`${process.env.REACT_APP_API_URL}`+'ivvkor/user/updateUserInfo', {
+        method: 'POST',
+        body: formData,
+        credentials: 'include'
+    })
+
+    await errorHandler(response)
+
+    return response.json()
+}
+
 export const deleteAccount = async(email: string) => {
     await fetch(`${process.env.REACT_APP_API_URL}`+'ivvkor/user/deleteAccount', {
         method: 'DELETE',

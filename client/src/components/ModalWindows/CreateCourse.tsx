@@ -4,8 +4,8 @@ import styles from "../../css-modules/createCourse.module.css"
 import {createCourse} from "../../http/courseAPI"
 import {login} from "../../http/userAPI";
 
-const CreateCourse = observer(({isActive, setActive}) => {
-    const [selectedImage, setSelectedImage] = useState(null)
+const CreateCourse = observer(({isActive, setActive}: any) => {
+    const [selectedImage, setSelectedImage] = useState("")
 
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
@@ -34,7 +34,7 @@ const CreateCourse = observer(({isActive, setActive}) => {
                 <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Введите название курса..." className={ styles.name } type="text"/>
                 <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Введите описание курса..." className={ styles.description }/>
                 <div>
-                    <img className={ styles.upload__image } src={selectedImage}/>
+                    <img className={ styles.upload__image } src={ selectedImage }/>
                 </div>
                 <input className={ styles.upload__image__button } type="file" onChange={(e) => showImage(e)}/>
                 <button onClick={uploadImage} className={ styles.add__button }>Добавить</button>
