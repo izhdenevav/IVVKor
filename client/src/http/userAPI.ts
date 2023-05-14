@@ -39,8 +39,6 @@ export const login = async (email: string, password: string) => {
 
     await errorHandler(response)
 
-    console.log(jwt_decode(cookies.get('token')))
-
     return jwt_decode(cookies.get('token'))
 }
 
@@ -151,5 +149,31 @@ export const getUserByLogin = async(login: string) => {
     })
 
     return response.json()
+}
+
+export const searchUsers = async(text: string) => {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}`+'ivvkor/user/search', {
+        method: 'POST',
+        body: JSON.stringify({text}),
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+
+    return response.json()
+}
+
+export const sendCertificate = async(userId, login: string, certificate) => {
+    let formData = new FormData()
+    formData.append("userId", userId)
+    formData.append("login", login)
+    formData.append("certificate", certificate)
+
+    const response = await fetch(`${process.env.REACT_APP_API_URL}`+'ivvkor/user/certificate', {
+        method: 'POST',
+        body: formData
+    })
+
+    await errorHandler(response)
 }
 

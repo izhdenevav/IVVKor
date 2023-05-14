@@ -16,8 +16,9 @@ const AdminProfile = observer(() => {
             <div className={ styles.page }>
                 <label className={ styles.greeting } >Добро пожаловать, администратор {user.user.login}!</label>
                 <ul className={ styles.button__container }>
-                    <li><button onClick={() => setCourseModalActive(true)} className={ styles.button }>Добавить курс</button></li>
-                    <li><button onClick={() => console.log(isCourseModalActive)} className={ styles.button }>Добавить учебные материалы</button></li>
+                    <button onClick={() => setCourseModalActive(true)} className={ styles.button }>Добавить курс</button>
+                    <button onClick={() => console.log(isCourseModalActive)} className={ styles.button }>Добавить учебные материалы</button>
+                    <button className={ styles.button }>Заявки на подтверждение гыпа</button>
                 </ul>
                 <CreateCourse isActive={isCourseModalActive} setActive={setCourseModalActive}/>
             </div>

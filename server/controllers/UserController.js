@@ -1,10 +1,11 @@
 const bcrypt = require('bcrypt')
-const {User, UserCourse, Course} = require('../models/models')
+const {User, UserCourse, Course, ConfirmationRequests} = require('../models/models')
 const ApiError = require('../error/ApiError')
 const jwt = require('jsonwebtoken')
 const path = require('path')
 const uuid = require('uuid')
 const mailService = require('../service/mailService')
+const {Op} = require("sequelize");
 
 const TOKEN_COOKIE_NAME = 'token';
 
@@ -203,12 +204,42 @@ class UserController {
         res.end()
     }
 
-    async getUserByLogin(req, res, next) {
+    async getUserByLogin(req, res) {
         const {login} = req.body
 
         const user = await User.findOne({where: {login}})
 
         return res.json({id: user.id, login: user.login, dateBirth: user.dateBirth, lpl: user.lpl, photo: user.photo})
+    }
+
+    async sendCertificate(req, res) {
+        const {userId, login} = req.body
+
+        const {certificate} = req.files
+
+        const examCertificate = login + "_certificate"
+
+        await certificate.mv(path.resolve(__dirname, '..', 'static', examCertificate))
+
+        await ConfirmationRequests.create({userId, examCertificate})
+
+        res.end()
+    }
+
+    async searchUsers(req, res, next) {
+        const {text} = req.body
+
+        const result  = await User.findAll( {where: {
+                login: {
+                    [Op.startsWith]: text
+                }
+        }})
+
+        if (!result) {
+            return next(ApiError.badRequest("Ничего не найдено!"))
+        }
+
+        return res.json(result)
     }
 }
 

@@ -9,7 +9,7 @@ const User = sequelize.define('user', {
     role: {type: DataTypes.STRING, defaultValue: "USER"},
     photo: {type: DataTypes.STRING, defaultValue: "default-user.png"},
     dateBirth: {type: DataTypes.DATE, defaultValue: "01.01.2000"},
-    lpl: {type: DataTypes.STRING, defaultValue: "Отсутствует"},
+    lpl: {type: DataTypes.STRING},
     isActivated: {type: DataTypes.BOOLEAN, defaultValue: false},
     activationLink: {type: DataTypes.STRING},
     isBlocked: {type: DataTypes.BOOLEAN, defaultValue: false}
