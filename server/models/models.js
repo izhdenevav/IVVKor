@@ -9,6 +9,7 @@ const User = sequelize.define('user', {
     role: {type: DataTypes.STRING, defaultValue: "USER"},
     photo: {type: DataTypes.STRING, defaultValue: "default-user.png"},
     dateBirth: {type: DataTypes.DATE, defaultValue: "01.01.2000"},
+    lpl: {type: DataTypes.STRING, defaultValue: "Отсутствует"},
     isActivated: {type: DataTypes.BOOLEAN, defaultValue: false},
     activationLink: {type: DataTypes.STRING},
     isBlocked: {type: DataTypes.BOOLEAN, defaultValue: false}
@@ -44,6 +45,11 @@ const UserComplaints = sequelize.define('userComplaints', {
     status: {type: DataTypes.STRING, defaultValue: "Подана"}
 })
 
+const ConfirmationRequests = sequelize.define('confirmationRequests', {
+    id: {type: DataTypes.INTEGER, allowNull: false, autoIncrement: true, primaryKey: true},
+    examCertificate: {type: DataTypes.STRING, allowNull: false}
+})
+
 User.belongsToMany(Course, {through: UserCourse})
 Course.belongsToMany(User, {through: UserCourse})
 
@@ -53,11 +59,14 @@ Course.hasMany(CourseComplaints)
 
 User.hasMany(UserComplaints)
 
+User.hasOne(ConfirmationRequests)
+
 module.exports = {
     User,
     Course,
     UserCourse,
     EducationalMaterials,
     CourseComplaints,
-    UserComplaints
+    UserComplaints,
+    ConfirmationRequests
 }

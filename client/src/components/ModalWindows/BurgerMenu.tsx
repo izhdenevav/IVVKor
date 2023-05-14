@@ -25,7 +25,7 @@ const BurgerMenu = observer(({isActive, setActive}) => {
         if (user.user.role === 'ADMIN') {
             navigate('/admin')
         } else {
-            navigate('/profile/' + user.user.login)
+            navigate('/my_profile')
         }
     }
 

@@ -11,7 +11,6 @@ const errorHandler = async (response: Response) => {
 };
 
 export const registration = async (email: string, login: string, password: string) => {
-    console.log(email, login, password)
     const response = await fetch(`${process.env.REACT_APP_API_URL}`+'ivvkor/user/registration',
         {
             method: 'POST',
@@ -39,6 +38,8 @@ export const login = async (email: string, password: string) => {
         })
 
     await errorHandler(response)
+
+    console.log(jwt_decode(cookies.get('token')))
 
     return jwt_decode(cookies.get('token'))
 }
@@ -98,7 +99,7 @@ export const updatePassword = async(email: string, oldPassword: string, newPassw
     await errorHandler(response)
 }
 
-export const updatePassword = async(email: string, oldPassword: string, newPassword: string) => {
+export const updateEmail = async(email: string, oldPassword: string, newPassword: string) => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}`+'ivvkor/user/updatePassword', {
         method: 'POST',
         body: JSON.stringify({email, oldPassword, newPassword}),
@@ -111,20 +112,11 @@ export const updatePassword = async(email: string, oldPassword: string, newPassw
     await errorHandler(response)
 }
 
-
-const toNormalDate = (date) => {
-    let year = date.substr(0, 2)
-    let month = date.substr(3, 2)
-    let day = date.substr(6, 4)
-
-    return year + "-" + month + "-" + day
-}
-
 export const updateUserInfo = async(email: string, login: string, dateBirth: string, photo) => {
     let formData = new FormData()
     formData.append("email", email)
     formData.append("login", login)
-    formData.append("dateBirth", toNormalDate(dateBirth))
+    formData.append("dateBirth", dateBirth)
     formData.append("photo", photo)
 
     const response = await fetch(`${process.env.REACT_APP_API_URL}`+'ivvkor/user/updateUserInfo', {
@@ -147,5 +139,17 @@ export const deleteAccount = async(email: string) => {
             'content-type': 'application/json'
         }
     })
+}
+
+export const getUserByLogin = async(login: string) => {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}`+'ivvkor/user/getUser', {
+        method: 'POST',
+        body: JSON.stringify({login}),
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+
+    return response.json()
 }
 

@@ -74,7 +74,7 @@ const Sign = observer(({active, setActive, isAuth, setAuth}) => {
         if (user.user.role === 'ADMIN') {
             navigate('/admin')
         } else {
-            navigate('/profile/' + user.user.login)
+            navigate('/my_profile')
         }
     }
 

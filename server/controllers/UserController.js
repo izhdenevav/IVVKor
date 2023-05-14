@@ -8,9 +8,9 @@ const mailService = require('../service/mailService')
 
 const TOKEN_COOKIE_NAME = 'token';
 
-const generateToken = (id, email, login, role, photo, dateBirth, isActivated, isBlocked) => {
+const generateToken = (id, email, login, role, photo, dateBirth, lpl, isActivated, isBlocked) => {
     return jwt.sign(
-        {id, email, login, role, photo, dateBirth, isActivated, isBlocked},
+        {id, email, login, role, photo, dateBirth, lpl, isActivated, isBlocked},
         process.env.SECRET_KEY,
         {expiresIn: '24h'}
     )
@@ -35,7 +35,7 @@ class UserController {
         await mailService.sendActivationMail(email, `${process.env.API_URL}/ivvkor/user/activate/${activationLink}`)
 
 
-        const token = generateToken(user.id, user.email, user.login, user.role, user.photo, user.dateBirth, user.isActivated, user.isBlocked)
+        const token = generateToken(user.id, user.email, user.login, user.role, user.photo, user.dateBirth, user.lpl, user.isActivated, user.isBlocked)
 
         res.cookie(TOKEN_COOKIE_NAME, token, {
             maxAge: 24 * 60 * 60 * 1000,
@@ -60,7 +60,7 @@ class UserController {
 
             user = await User.findOne({where: {email}})
 
-            const token = generateToken(user.id, user.email, user.login, user.role, user.photo, user.dateBirth, user.isActivated, user.isBlocked)
+            const token = generateToken(user.id, user.email, user.login, user.role, user.photo, user.dateBirth, user.lpl, user.isActivated, user.isBlocked)
 
             res.cookie(TOKEN_COOKIE_NAME, token, {
                 maxAge: 24 * 60 * 60 * 1000,
@@ -86,7 +86,7 @@ class UserController {
             return next(ApiError.badRequest("Неправильный пароль!"))
         }
 
-        const token = generateToken(user.id, user.email, user.login, user.role, user.photo, user.dateBirth, user.isActivated, user.isBlocked)
+        const token = generateToken(user.id, user.email, user.login, user.role, user.photo, user.dateBirth, user.lpl, user.isActivated, user.isBlocked)
 
         res.cookie(TOKEN_COOKIE_NAME, token, {
             maxAge: 24 * 60 * 60 * 1000,
@@ -137,9 +137,9 @@ class UserController {
 
             await User.update({photo: login + ".png", login: login, dateBirth: dateBirth}, {where: {email: email}})
 
-            let user = User.findOne({where: {email: email}})
+            let user = await User.findOne({where: {email: email}})
 
-            const token = generateToken(user.id, user.email, user.login, user.role, user.photo, user.dateBirth, user.isActivated, user.isBlocked)
+            const token = generateToken(user.id, user.email, user.login, user.role, user.photo, user.dateBirth, user.lpl, user.isActivated, user.isBlocked)
 
             res.cookie(TOKEN_COOKIE_NAME, token, {
                 maxAge: 24 * 60 * 60 * 1000,
@@ -176,9 +176,9 @@ class UserController {
 
         await mailService.sendActivationMail(email, `${process.env.API_URL}/ivvkor/user/activate/${activationLink}`)
 
-        const user = User.findOne({where: {email}})
+        const user = await User.findOne({where: {email}})
 
-        const token = generateToken(user.id, user.email, user.login, user.role, user.photo, user.dateBirth, user.isActivated, user.isBlocked)
+        const token = generateToken(user.id, user.email, user.login, user.role, user.photo, user.dateBirth, user.lpl, user.isActivated, user.isBlocked)
 
         res.cookie(TOKEN_COOKIE_NAME, token, {
             maxAge: 24 * 60 * 60 * 1000,
@@ -201,6 +201,14 @@ class UserController {
         await User.destroy({where: {email: email}})
 
         res.end()
+    }
+
+    async getUserByLogin(req, res, next) {
+        const {login} = req.body
+
+        const user = await User.findOne({where: {login}})
+
+        return res.json({id: user.id, login: user.login, dateBirth: user.dateBirth, lpl: user.lpl, photo: user.photo})
     }
 }
 

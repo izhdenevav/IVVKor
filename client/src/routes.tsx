@@ -10,7 +10,7 @@ import News from "./pages/News";
 
 export const authRoutes = [
     {
-        path: '/profile/:login',
+        path: '/my_profile',
         Component: <UserProfile/>
     },
     {
@@ -43,5 +43,9 @@ export const publicRoutes = [
     {
         path: '/news',
         Component: <News/>
+    },
+    {
+        path: '/profile/:login',
+        Component: <UserProfile/>
     }
 ]

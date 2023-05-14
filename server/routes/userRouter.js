@@ -15,5 +15,6 @@ router.post('/addUserCourse', userController.addUserCourse) //добавить �
 router.post('/getUserCourses', userController.getUserCourses) //получить курсы пользователя
 router.post('/updatePassword', userController.updatePassword) //меняем пароль
 router.post('/updateEmail', userController.updateEmail) //меняем почту
+router.post('/getUser', userController.getUserByLogin) //получаем пользователя по логину
 
 module.exports = router

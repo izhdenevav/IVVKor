@@ -6,14 +6,6 @@ import {Form, Field} from "react-final-form";
 import {createCourse} from "../http/courseAPI";
 import {updatePassword, updateUserInfo} from "../http/userAPI";
 
-const toNormalDate = (date: string) => {
-    let year = date.substr(0, 4)
-    let month = date.substr(5, 2)
-    let day = date.substr(8, 2)
-
-    return day + "." + month + "." + year
-}
-
 type FormValues = {
     login: string;
     dateBirth: string;
@@ -87,7 +79,7 @@ const UserInformation = () => {
                                         </Field>
                                     </div>
                                     <div>
-                                        <Field name="dateBirth" initialValue={toNormalDate(user.user.dateBirth)}>
+                                        <Field name="dateBirth" initialValue={user.user.dateBirth}>
                                             {({input, meta}) => (
                                                 <div>
                                                     <input type="text" className={ styles.input } {...input}/>

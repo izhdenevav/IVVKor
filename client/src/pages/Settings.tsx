@@ -6,6 +6,7 @@ import SettingsMenu from "../components/SettingsMenu";
 import UserInformation from "../components/UserInformation";
 import styles from "../css-modules/settings.module.css"
 import Security from "../components/Security";
+import UserSettings from "../components/UserSettings";
 
 const Settings = observer(() => {
     const {user} = useContext(Context)
@@ -15,7 +16,7 @@ const Settings = observer(() => {
             <Navbar/>
             <div className={ styles.page__container }>
                 <SettingsMenu/>
-                <Security/>
+                <UserSettings/>
             </div>
         </div>
     );

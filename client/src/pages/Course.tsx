@@ -15,6 +15,8 @@ const Course = observer(() => {
 
     const {name} = useParams()
 
+    console.log(name)
+
     useEffect(() => {
         getCourse()
     }, [])

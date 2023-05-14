@@ -1,10 +1,9 @@
 import {makeAutoObservable} from "mobx";
 
 export default class UserStore {
-    constructor(private user: [] = [], private isAuth: boolean = false, private isActivated: boolean = false) {
+    constructor(private user: [] = [], private isAuth: boolean = false) {
         this.user = user
         this.isAuth = isAuth
-        this.isActivated = isActivated
         makeAutoObservable(this)
     }
 }

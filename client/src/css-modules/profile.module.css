@@ -28,13 +28,16 @@
     font-weight: normal;
     margin-top: 5px;
     margin-bottom: 0;
+    margin-right: 5px;
 }
 
 .divUserInfo {
     padding: 10px;
-    margin: 10px;
+    margin-right: 10px;
+
     width: 150px;
     height: auto;
+
     text-align: center;
 }
 
@@ -64,6 +67,19 @@
     height: auto;
 
     padding: 20px;
+}
+
+.info__container {
+    display: flex;
+
+    padding: 10px;
+}
+
+.lpl__container {
+    width: auto;
+    height: auto;
+
+    display: flex;
 }
 
 

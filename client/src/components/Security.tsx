@@ -50,16 +50,12 @@ const Security = () => {
 
     const update = async(values: FormValues) => {
         try {
-            if (!oldPassword || !values.password ) {
-
-            } else {
                 await updatePassword(user.user.email, oldPassword, values.password)
                 setResult("Вы успешно сменили пароль!")
                 setOldPassword("")
                 setResult("")
                 values.password = ""
                 values.repeatedPassword = ""
-            }
         } catch (err) {
             setResult(err.message)
         }
